@@ -543,7 +543,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g // OR hexo generate</span><br><span class="line">hexo d // OR hexo deploy</span><br></pre></td></tr></table></figure>
 <p>此时控制台会报错：<span style="color:rgb(255,0,0)">ERROR</span> Deployer not found: git<br>这是因为项目缺少git部署的插件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>执行以上的语句即可～～～～～～～然后重复第三步<br>此时就可以看到git仓库中已经有了一部分代码</p>
+<p>执行以上的语句即可～～～～～～～然后重复第三步<br>此时就可以看到git仓库中已经有了一部分代码,神奇的是：<br>此时去访问：&lt;用户名&gt;.github.io 就可以看到线上的博客样式了。</p>
+<p><a href="JingTao-Li.github.io">github pages demo</a></p>
+<h3 id="7-修改github-page-为自定义的域名"><a href="#7-修改github-page-为自定义的域名" class="headerlink" title="7. 修改github page 为自定义的域名"></a>7. 修改github page 为自定义的域名</h3><p><img src="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/my-yuming.png" class="lazyload" data-srcset="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/my-yuming.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="我的域名"><br><strong>点击解析，添加对应的IP地址和CNAME</strong><br><img src="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/yuming-parse.png" class="lazyload" data-srcset="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/yuming-parse.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="我的域名解析设置"><br>然后在当前项目的 source/ 目录下创建一个名叫 CNAME 的文件，里面的内容就是你的域名地址。接着重新部署一下就可以了。</p>
 
   
   
@@ -578,7 +580,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-25T14:12:24+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-25T14:52:51+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Jun 25, 2021</p>
@@ -700,7 +702,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E6%AF%94%E8%BE%83%E5%81%8F%E5%90%91%E4%BA%8Ehexo%E6%A1%86%E6%9E%B6%EF%BC%9A"><span class="toc-text">个人比较偏向于hexo框架：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%90%AD%E5%BB%BAhexo%E7%8E%AF%E5%A2%83"><span class="toc-text">1. 搭建hexo环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BAhexo%E9%A1%B9%E7%9B%AE"><span class="toc-text">2. 创建hexo项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="toc-text">3. 启动项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="toc-text">4. 新建一篇文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%88%87%E6%8D%A2%E8%87%AA%E5%B7%B1%E5%96%9C%E6%AC%A2%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="toc-text">5. 切换自己喜欢的主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%83%A8%E7%BD%B2%E5%88%B0github-pages"><span class="toc-text">6. 部署到github pages</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E6%AF%94%E8%BE%83%E5%81%8F%E5%90%91%E4%BA%8Ehexo%E6%A1%86%E6%9E%B6%EF%BC%9A"><span class="toc-text">个人比较偏向于hexo框架：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%90%AD%E5%BB%BAhexo%E7%8E%AF%E5%A2%83"><span class="toc-text">1. 搭建hexo环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BAhexo%E9%A1%B9%E7%9B%AE"><span class="toc-text">2. 创建hexo项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="toc-text">3. 启动项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="toc-text">4. 新建一篇文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%88%87%E6%8D%A2%E8%87%AA%E5%B7%B1%E5%96%9C%E6%AC%A2%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="toc-text">5. 切换自己喜欢的主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%83%A8%E7%BD%B2%E5%88%B0github-pages"><span class="toc-text">6. 部署到github pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%BF%AE%E6%94%B9github-page-%E4%B8%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E5%9F%9F%E5%90%8D"><span class="toc-text">7. 修改github page 为自定义的域名</span></a></li></ol>
     </div>
   </section>
 
