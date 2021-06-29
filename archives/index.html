@@ -231,10 +231,26 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                   
                   >
-                  有疑问？
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
                 </a>
                 
                   <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>主题切换
+                </a>
+              <li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
                     
                       
             
@@ -385,10 +401,26 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                   
                   >
-                  有疑问？
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
                 </a>
                 
                   <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>主题切换
+                </a>
+              <li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
                     
                       
             
@@ -448,7 +480,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">生命因你而火热</p>
+      <p class="title">京涛の博客</p>
     
     
   </div>
@@ -456,7 +488,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       <div class="m_search">
         <form name="searchform" class="form u-search-form">
-          <input type="text" class="input u-search-input" placeholder="" />
+          <input type="text" class="input u-search-input" placeholder="生命因你而火热" />
           <i class="icon fas fa-search fa-fw"></i>
         </form>
       </div>
@@ -465,11 +497,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div class='list-h'>
         
           
-            <a href="/v4/getting-started/"
+            <a href="/"
               
               
-              id="v4getting-started">
-              <i class='fas fa-book fa-fw'></i><p>文档</p>
+              id="home">
+              <i class='fas fa-rss fa-fw'></i><p>博客</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-archive fa-fw'></i><p>归档</p>
             </a>
           
             <a target="_blank" rel="noopener" href="https://github.com/JingTao-Li/JingTao-Li.github.io/"
@@ -507,7 +546,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 						<h2>2021</h2>
 					
 						<div class='timenode'>
-								<a class="meta" href="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+								<a class="meta" href="/post/9487.html">
 									<time>06-25</time>
 									
 										如何搭建个人博客?
@@ -523,7 +562,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 				
 					
 						<div class='timenode'>
-								<a class="meta" href="/2021/06/25/hello-world/">
+								<a class="meta" href="/post/3eeb.html">
 									<time>06-25</time>
 									
 										Hello World
@@ -544,7 +583,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow blur desktop mobile">
+<section class="widget blogger shadow blur desktop">
   <div class='content'>
     
       
@@ -993,7 +1032,7 @@ var loadCSS = function( href, before, media, attributes ){
         
         
         >
-        <i class='fas fa-moon fa-fw'></i> Dark mode
+        <i class='fas fa-moon fa-fw'></i> 主题切换
       </a>
     </li>
   
@@ -1194,7 +1233,7 @@ var loadCSS = function( href, before, media, attributes ){
 
   
   
-<script src="/js/valine.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
 
 
 <script>
@@ -1226,7 +1265,7 @@ var loadCSS = function( href, before, media, attributes ){
       path = defaultPath || decodeURI(window.location.pathname);
     }
     var valine = new Valine();
-    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"9kSOl7buAiq6GMC68Jsroim6-gzGzoHsz","appKey":"CAhrh4v1eNgjJazDfHihX8t3","meta":["nick","mail"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"wavatar","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false,"visitor":true}, {
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"9kSOl7buAiq6GMC68Jsroim6-gzGzoHsz","appKey":"CAhrh4v1eNgjJazDfHihX8t3","meta":["nick","mail"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"Jing tao","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false,"js":"https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js","visitor":true,"metaPlaceholder":[{"nick":"京涛"},{"mail":"***@qq.com"}],"tagMeta":"博主,小伙伴,访客"}, {
       el: '#valine_container',
       path: path,
       placeholder: pagePlaceholder,
@@ -1290,8 +1329,8 @@ function setSearchService() {
   <script defer>
 
   const LCCounter = {
-    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
-    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    app_id: '9kSOl7buAiq6GMC68Jsroim6-gzGzoHsz',
+    app_key: 'CAhrh4v1eNgjJazDfHihX8t3',
     custom_api_server: '',
 
     // 查询存储的记录
@@ -1757,3 +1796,5 @@ document.addEventListener("pjax:success", listennSidebarTOC);
     </div>
   </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/clicksocialist.js"></script>

@@ -28,8 +28,6 @@
   
 
   
-    <meta name="description" content="这是摘要">
-  
 
   <!-- feed -->
   
@@ -233,10 +231,26 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                   
                   >
-                  有疑问？
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
                 </a>
                 
                   <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>主题切换
+                </a>
+              <li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
                     
                       
             
@@ -387,10 +401,26 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                   
                   >
-                  有疑问？
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
                 </a>
                 
                   <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>主题切换
+                </a>
+              <li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
                     
                       
             
@@ -450,7 +480,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">生命因你而火热</p>
+      <p class="title">京涛の博客</p>
     
     
   </div>
@@ -458,7 +488,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       <div class="m_search">
         <form name="searchform" class="form u-search-form">
-          <input type="text" class="input u-search-input" placeholder="" />
+          <input type="text" class="input u-search-input" placeholder="生命因你而火热" />
           <i class="icon fas fa-search fa-fw"></i>
         </form>
       </div>
@@ -467,11 +497,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div class='list-h'>
         
           
-            <a href="/v4/getting-started/"
+            <a href="/"
               
               
-              id="v4getting-started">
-              <i class='fas fa-book fa-fw'></i><p>文档</p>
+              id="home">
+              <i class='fas fa-rss fa-fw'></i><p>博客</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-archive fa-fw'></i><p>归档</p>
             </a>
           
             <a target="_blank" rel="noopener" href="https://github.com/JingTao-Li/JingTao-Li.github.io/"
@@ -556,7 +593,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="如何搭建个人博客?" data-path="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+      <div id="lc-pv" data-title="如何搭建个人博客?" data-path="/post/9487.html">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -574,10 +611,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <p>这是摘要</p>
-<span id="more"></span>
-
-<h3 id="搭建博客的框架很多，个人比较偏向于hexo框架："><a href="#搭建博客的框架很多，个人比较偏向于hexo框架：" class="headerlink" title="搭建博客的框架很多，个人比较偏向于hexo框架："></a>搭建博客的框架很多，个人比较偏向于hexo框架：</h3><ul>
+  <h3 id="搭建博客的框架很多，个人比较偏向于hexo框架："><a href="#搭建博客的框架很多，个人比较偏向于hexo框架：" class="headerlink" title="搭建博客的框架很多，个人比较偏向于hexo框架："></a>搭建博客的框架很多，个人比较偏向于hexo框架：</h3><ul>
 <li>hexo只需要专注于写文档而不需要过分担心别的问题。</li>
 <li>hexo比较成熟，如果遇到问题也可以得到很好的解决。</li>
 <li>hexo使用github pages进行部署，不需要购买自己的服务器就可以部署到线上。</li>
@@ -629,10 +663,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>此时控制台会报错：<span style="color:rgb(255,0,0)">ERROR</span> Deployer not found: git<br>这是因为项目缺少git部署的插件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
 <p>执行以上的语句即可～～～～～～～然后重复第三步<br>此时就可以看到git仓库中已经有了一部分代码,神奇的是：<br>此时去访问：&lt;用户名&gt;.github.io 就可以看到线上的博客样式了。</p>
-<div class="tag link"><a class="link-card" title="github pages demo" href="JingTao-Li.github.io"><div class="left"><img src="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/github.png" class="lazyload" data-srcset="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/github.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></div><div class="right"><p class="text">github pages demo</p><p class="url">JingTao-Li.github.io</p></div></a></div>
+<div class="tag link"><a class="link-card" title="github pages demo" href="JingTao-Li.github.io"><div class="left"><img src="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/github.png" class="lazyload" data-srcset="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/github.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="/></div><div class="right"><p class="text">github pages demo</p><p class="url">JingTao-Li.github.io</p></div></a></div>
 
 
-<h3 id="7-修改github-page-为自定义的域名"><a href="#7-修改github-page-为自定义的域名" class="headerlink" title="7. 修改github page 为自定义的域名"></a>7. 修改github page 为自定义的域名</h3><p><img src="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/my-yuming.png" class="lazyload" data-srcset="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/my-yuming.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="我的域名"><br><strong>点击解析，添加对应的IP地址和CNAME</strong><br><img src="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/yuming-parse.png" class="lazyload" data-srcset="/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/yuming-parse.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="我的域名解析设置"><br>然后在当前项目的 source/ 目录下创建一个名叫 CNAME 的文件，里面的内容就是你的域名地址。接着重新部署一下就可以了。</p>
+<h3 id="7-修改github-page-为自定义的域名"><a href="#7-修改github-page-为自定义的域名" class="headerlink" title="7. 修改github page 为自定义的域名"></a>7. 修改github page 为自定义的域名</h3><p><img src="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/my-yuming.png" class="lazyload" data-srcset="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/my-yuming.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="我的域名"><br><strong>点击解析，添加对应的IP地址和CNAME</strong><br><img src="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/yuming-parse.png" class="lazyload" data-srcset="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/yuming-parse.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="我的域名解析设置"><br>然后在当前项目的 source/ 目录下创建一个名叫 CNAME 的文件，里面的内容就是你的域名地址。接着重新部署一下就可以了。</p>
 <h3 id="8-如何在项目中引入本地图片"><a href="#8-如何在项目中引入本地图片" class="headerlink" title="8. 如何在项目中引入本地图片"></a>8. 如何在项目中引入本地图片</h3><p><strong>第一步：</strong>安装插件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 
@@ -662,10 +696,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-28T02:08:24+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-29T18:59:02+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年06月28日 02:08:24</p>
+    <p>更新于：2021年06月29日 06:59:02</p>
   </a>
 </div>
 
@@ -687,7 +721,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&title=如何搭建个人博客 - 京涛个人博客&summary=这是摘要"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/9487.html&title=如何搭建个人博客 - 京涛个人博客&summary="
           
           >
           
@@ -699,7 +733,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&title=如何搭建个人博客 - 京涛个人博客&summary=这是摘要"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/9487.html&title=如何搭建个人博客 - 京涛个人博客&summary="
           
           >
           
@@ -711,7 +745,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/06/25/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&title=如何搭建个人博客 - 京涛个人博客&summary=这是摘要"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/9487.html&title=如何搭建个人博客 - 京涛个人博客&summary="
           
           >
           
@@ -725,7 +759,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class='hoverbox'>
           <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAF4CAAAAAB79r16AAAFQElEQVR42u3cQXIbSQwEQP3/0/Z9HTQBVI2o3c2+ieRw0NlzKQKhr1/WR9YXAvDgLfDgLfDgrQL813G9uv6fr7/6+4+C3ryffn5b77t9nL3AgwcPHjx48ODBgy/CXzf86gbTQqdA24Pc1nE9iLUXePDgwYMHDx48ePAPwLcKmha4/Vw70G2BUy/w4MGDBw8ePHjw4H8C/DY4pY2GaR3TurYHAx48ePDgwYMHDx78fwE+PYDr++3GRnrg4MGDBw8ePHjw4MF/Ev7auEgD0zTofHpQKfUCDx48ePDgwYMHD74J3wom/5e/z17gwYMHDx48ePDgwRfg0zUNOGlAGgeUYZCbBrJf5QUePHjw4MGDBw8efAP+XeHXRkcK3g54rYbItsFzniQDDx48ePDgwYMHD37we/z0witMK1BdobbBavsAnRsh4MGDBw8ePHjw4MEHA03pRloH0wpk28A33X/a6AEPHjx48ODBgwcPvgF/HfBpBadrg2ELNf2ea6Nm/Dp48ODBgwcPHjx48EX46yBQOuh0/Xu94SNsDN3qQIEHDx48ePDgwYMH/5d/FJQ2PLYBK22QTF9PA9b2AXp5H/DgwYMHDx48ePDgC/CtG6cBKA1qrYNtNXziRgh48ODBgwcPHjx48H+B34JfA9R1Y+lBtB6k7f7AgwcPHjx48ODBg38SPoWaNhi2UNv7pQHr2wa2wIMHDx48ePDgwYMvwqfQ04NIB6mmB/ZUo+daJ3jw4MGDBw8ePHjwTfj1D/lhwNhu4Nqg2cKl9YyvAw8ePHjw4MGDBw++AB8P6CwDxPVAroGovabAL68HDx48ePDgwYMHD74Af/3BvzXo89T9U6Dt/ccPFHjw4MGDBw8ePHjwRfhrEEqDV6uhsYW81pkGKvDgwYMHDx48ePDgPwE/LfwaYJ6qp/VAXPcPHjx48ODBgwcPHnwTPh1MShsT6YFtP7cNbK37gwcPHjx48ODBgwf/Cfh0kKk1kHQdKEoP9Fo/ePDgwYMHDx48ePDfAb8dFJpu/NrwSA/8ehDb+44HqsCDBw8ePHjw4MGDL8BPb3xtmGwL3QaTa90x4PH7wIMHDx48ePDgwYN/Aj4t7Kngch0oSvex/d6314EHDx48ePDgwYMHX4DfBqB2Q+Kp61oPwPb6t9eBBw8ePHjw4MGDB/8A/HaQaVtw60DT19MAeG4MgQcPHjx48ODBgwdfhN/CTl9vHcg0MD11gLUHBzx48ODBgwcPHjz4Avw1IKSFpdd9F+h1vawbPHjw4MGDBw8ePPgi/HVAZxugroFoG+C2gQo8ePDgwYMHDx48+H8jfLth0RpsShsw10bNNsCN6wAPHjx48ODBgwcPvgCfNjS2gWsbzJ4KWNsHpHXQ4MGDBw8ePHjw4ME34dPGQTpI9K6O64PyXQ2XcX3gwYMHDx48ePDgwRfgrw2Aa2DaNhCuge0K1hqUevn94MGDBw8ePHjw4MEX4NO1DVrbwHRuOIQPxPb+5+QKHjx48ODBgwcPHnzwe3waFFoNjxQwDT7pga6TK3jw4MGDBw8ePHjwAfx1YGh7fRqE0mC2DWTXz7/cD3jw4MGDBw8ePHjwD8CfB3WOcGnQ2g4mXRshrUAJHjx48ODBgwcPHvxPgE8bI+2GSBoMrwFu/ACABw8ePHjw4MGDB/+D4NMCrw2XNPBN79tqoIAHDx48ePDgwYMH/wT8FmT7fgvkWs/1e65B7bFJMvDgwYMHDx48ePDgD2vbCEgHo7arXW+t4QIePHjw4MGDBw8efAHe+t4FHjx4Czx4Czx4K1i/AWrDpbeCVYwAAAAAAElFTkSuQmCC">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACS0lEQVR42u3cQW7DMAwEQP//0+0DCsPiUnYTenRrKzsc9bIghRw/L10HODg4ODj4IPgRrj8vXPz92b7q+9J6wcHBwcHBJ8KXA0Bx/+r7TgsND+70eXBwcHBw8MHwaiGrz53tS5+PDw4cHBwcHBz8qAaStIGxGmjAwcHBwcHB+wHmqvDVA1tuLICDg4ODg4PnDfqbgk418Dw+SQEHBwcHB/8geHxh7p9+3nbBDxwcHBwc/IvhT60uYFsd4ODg4ODgg+DdAUE6OOg2NtIDAQcHBwcHnwjvBoi0YdG9wFf+B4KDg4ODgw+EV2HdBv9VodWBxvL7wcHBwcHBB8GrASMdJKQNj9U6wMHBwcHB3wjfFRTuCijbGx3g4ODg4OCD4asD/eq+Y9NKPx8cHBwcHPwN8Gow2D2Q2B1cyskNHBwcHBz8i+DVC3K7BgHVfemBlicp4ODg4ODgA+C7GgLtAUDYgAAHBwcHB38j/O4gU24cbB4wgIODg4ODT4LvHuSnwWLXAV8GInBwcHBw8EHwaqO+2iBoDwDCBgU4ODg4OPgb4HcV0B3op8Hp8nPBwcHBwcEHwbur2ljoDiDaDQpwcHBwcPBB8N2Dg26DIj245feBg4ODg4MPhKcFrg7klwNG8yJB3IEBBwcHBwcfAE8b9mmDf9eAYflgwMHBwcHBweMvpq8Gpd2fBw4ODg4ODp43/ruBqLrvseQGDg4ODg7+AfB0gF/9exqMunWAg4ODg4NPhKcX/NKC0yBTHVCAg4ODg4NPhr9tgYODg4ODD1i/JqnEX9HJg8UAAAAASUVORK5CYII=">
           </div>
         </div>
       
@@ -750,7 +784,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class="prev-next">
       
       
-        <a class='next' href='/2021/06/25/hello-world/'>
+        <a class='next' href='/post/3eeb.html'>
           <p class='title'>Hello World<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
         </a>
@@ -1119,7 +1153,7 @@ var loadCSS = function( href, before, media, attributes ){
         
         
         >
-        <i class='fas fa-moon fa-fw'></i> Dark mode
+        <i class='fas fa-moon fa-fw'></i> 主题切换
       </a>
     </li>
   
@@ -1320,7 +1354,7 @@ var loadCSS = function( href, before, media, attributes ){
 
   
   
-<script src="/js/valine.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
 
 
 <script>
@@ -1352,7 +1386,7 @@ var loadCSS = function( href, before, media, attributes ){
       path = defaultPath || decodeURI(window.location.pathname);
     }
     var valine = new Valine();
-    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"9kSOl7buAiq6GMC68Jsroim6-gzGzoHsz","appKey":"CAhrh4v1eNgjJazDfHihX8t3","meta":["nick","mail"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"wavatar","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false,"visitor":true}, {
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"9kSOl7buAiq6GMC68Jsroim6-gzGzoHsz","appKey":"CAhrh4v1eNgjJazDfHihX8t3","meta":["nick","mail"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"Jing tao","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false,"js":"https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js","visitor":true,"metaPlaceholder":[{"nick":"京涛"},{"mail":"***@qq.com"}],"tagMeta":"博主,小伙伴,访客"}, {
       el: '#valine_container',
       path: path,
       placeholder: pagePlaceholder,
@@ -1416,8 +1450,8 @@ function setSearchService() {
   <script defer>
 
   const LCCounter = {
-    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
-    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    app_id: '9kSOl7buAiq6GMC68Jsroim6-gzGzoHsz',
+    app_key: 'CAhrh4v1eNgjJazDfHihX8t3',
     custom_api_server: '',
 
     // 查询存储的记录
@@ -1883,3 +1917,5 @@ document.addEventListener("pjax:success", listennSidebarTOC);
     </div>
   </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/clicksocialist.js"></script>
