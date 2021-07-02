@@ -22,9 +22,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>所有分类 - 京涛个人博客</title>
+  <title>JS常用知识点总结 - 京涛个人博客</title>
+  
+    <meta name="keywords" content="JS javascript">
   
 
+  
+    <meta name="description" content="整理项目开发中遇到的问题以及经常使用的js片段">
   
 
   <!-- feed -->
@@ -470,7 +474,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper category search' style="display: none;">
+        <div id="full" class='cover-wrapper post search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/bg.svg"></div>
           
@@ -532,73 +536,248 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow blur article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      <div class='post-wrapper'>
-        <article id="cat" class="post article white-box reveal shadow blur">
-          <h2>所有分类</h2>
-          <div class="all-cats">
-            
-              
-                <a class="" href="/categories/%E5%BC%80%E5%8F%91/">
-                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;开发</span>
-                  <span class="title">
-                    (2)
-                  </span>
-                </a>
-              
-                <a class=" child" href="/categories/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">
-                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;前端</span>
-                  <span class="title">
-                    (2)
-                  </span>
-                </a>
-              
-                <a class=" child" href="/categories/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/CSS/">
-                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;CSS</span>
-                  <span class="title">
-                    (1)
-                  </span>
-                </a>
-              
-                <a class=" child" href="/categories/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/JS/">
-                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;JS</span>
-                  <span class="title">
-                    (1)
-                  </span>
-                </a>
-              
-                <a class="" href="/categories/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
-                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;搭建个人博客</span>
-                  <span class="title">
-                    (1)
-                  </span>
-                </a>
-              
-            
-          </div>
-          <br>
+    
+    
+      <h1 class="title">
+        JS常用知识点总结
+      </h1>
+      <div class='new-meta-box'>
+        
           
-        </article>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/header.png">
+    <p>京涛</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a><span class="sep"></span><a class="category-link" href="/categories/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a><span class="sep"></span><a class="category-link" href="/categories/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/JS/">JS</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年06月29日 07:41:45</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="JS常用知识点总结" data-path="/post/535a.html">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
       </div>
     
+  </div>
+
+
   
+  
+  <p>整理项目开发中遇到的问题以及经常使用的js片段</p>
+<span id="more"></span>
+
+<details cyan><summary> 1. fliter、map、reduce的使用 </summary>
+              <div class='content'>
+              <figure class="highlight js"><figcaption><span>根据需求进行数组处理</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">10</span>,<span class="number">20</span>,<span class="number">111</span>,<span class="number">444</span>,<span class="number">40</span>,<span class="number">50</span>];</span><br></pre></td></tr></table></figure><figure class="highlight js"><figcaption><span>需求1：取出所有小于100的数字</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> newNums = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> n <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">100</span>) &#123;</span><br><span class="line">        newNums.push(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>需求2： 将所有小于100的数字进行转化 –乘以2</p></blockquote><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> newNums2 = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> n <span class="keyword">of</span> newNums) &#123;</span><br><span class="line">    newNums2.push(n * <span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>需求3： 将所有的newNums2数字相加得到最后的结果。</p></blockquote><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> total = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> n <span class="keyword">of</span> newNums2) &#123;</span><br><span class="line">    total += n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>filter / map / reduce  完成以上需求</p><p>​    高阶函数：函数的参数是另外一个函数</p></blockquote><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需求1：取出所有小于100的数字</span></span><br><span class="line">nums.filter(<span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//filter中的回调函数有一个要求：必须返回一个boolean值</span></span><br><span class="line">    <span class="comment">//当返回true时，函数内部会自动将本次回调的n加入到一个新的数组中</span></span><br><span class="line">    <span class="comment">//当返回为false时，函数内部会过滤掉这次的n</span></span><br><span class="line">    <span class="keyword">return</span> n &lt; <span class="number">100</span>; <span class="comment">//这里就可以直接满足第一个需求</span></span><br><span class="line">&#125;); </span><br><span class="line"><span class="comment">//这里会返回一个新的数组，就是包含nums中所有值小于100的新数组</span></span><br><span class="line"><span class="keyword">let</span> newNums = nums.filter(<span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &lt; <span class="number">100</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(newNums); <span class="comment">//[10,20,40,50]</span></span><br></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需求2： 将所有小于100的数字进行转化 --乘以2</span></span><br><span class="line"><span class="keyword">let</span> newNums2 = newNums.map(<span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n * <span class="number">2</span> ;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newNums2); <span class="comment">// [20,40,80,100]</span></span><br></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需求3：将所有的newNums2数字相加得到最后的结果</span></span><br><span class="line"><span class="comment">//reduce作用：对数组中所有的内容进行汇总</span></span><br><span class="line">newNums2.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">preValue , n</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//preValue 是上一次返回的值</span></span><br><span class="line">    <span class="comment">//return 100; //对应下面的过程</span></span><br><span class="line">    <span class="keyword">return</span> preValue + n;</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="comment">//reduce(参数1，参数2); 会返回最后汇总的结果; 参数1：整合数据操作、参数2：初始值</span></span><br><span class="line"><span class="comment">//这里面的function会执行4次，</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	第一次： preValue-&gt;0 ; n -&gt; 20;</span></span><br><span class="line"><span class="comment">	第二次： preValue-&gt;100 ; n -&gt;40;</span></span><br><span class="line"><span class="comment">	第二次： preValue-&gt;100 ; n -&gt;80;</span></span><br><span class="line"><span class="comment">	第二次： preValue-&gt;100 ; n -&gt;100;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><blockquote><p>计算最终的结果</p></blockquote><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> total = nums.filter(<span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &lt; <span class="number">100</span>;</span><br><span class="line">&#125;).map(<span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n * <span class="number">2</span>;</span><br><span class="line">&#125;).reduce(<span class="function"><span class="keyword">function</span> (<span class="params">preValue , n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preValue + n;</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> total = nums.filter(<span class="function"><span class="params">n</span> =&gt;</span> n &lt; <span class="number">100</span>).map(<span class="function"><span class="params">n</span> =&gt;</span> n * <span class="number">2</span>).reduce(<span class="function">(<span class="params">preValue,n</span>) =&gt;</span> preValue + n);</span><br><span class="line"><span class="built_in">console</span>.log(total); <span class="comment">// total = 240;</span></span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-29T23:44:46+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年06月29日 11:44:46</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%BC%80%E5%8F%91/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>开发</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%89%8D%E7%AB%AF/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>前端</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/535a.html&title=JS常用知识点总结 - 京涛个人博客&summary=整理项目开发中遇到的问题以及经常使用的js片段"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/535a.html&title=JS常用知识点总结 - 京涛个人博客&summary=整理项目开发中遇到的问题以及经常使用的js片段"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/535a.html&title=JS常用知识点总结 - 京涛个人博客&summary=整理项目开发中遇到的问题以及经常使用的js片段"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a class='share'><img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAD4CAAAAADkunTXAAACTklEQVR42u3aS27DMAwFQN3/0um+RWD+jCb0aOfYkTT25oHUeT10HHBwcHBw8EXwUxx/Jvz1+7vn3q0bvd/dLzg4ODg4+EZ4OAAEn8/OG52nu19wcHBwcPDN8MsAkHw+C6kGpfB+wcHBwcHBwc90wOiuBw4ODg4ODt4PMN15pwMUODg4ODj4k+DVAv/U+JpOCjg4ODg4+AfBqxv8r+vyfsHBwcHBwRfB7z6AF31hV42Gsf2Cg4ODg4MvglcDQrbBH30R1XWiLwocHBwcHHwTPBoYqr9P3S9DrwoR4ODg4ODgXwyvNuajQeQ1PNoHBcDBwcHBwRfBowtUNza18bFgBQ4ODg4OvgiePch3V3DJHiCorg8ODg4ODr4JHg0W2aBRbfx3GwqX1+Dg4ODg4Ivg1YN82cJDNQBVDwqOJTdwcHBwcPAPhncnyoKjhYPqgcN0JwUcHBwcHHwBPFqoj96vNvK7HyAdYMDBwcHBwb8YXi38Txcqqh8g3WAABwcHBwdfDI8uXC34R+93X0A6wICDg4ODgy+CT8GyBYepAsVlQwEcHBwcHHwh/O6C/3RQSTdAwMHBwcHBF8G7o1soyF5HPwg4ODg4OPgT4Kc4uoWHqaDUbiiAg4ODg4MvgHcDS/VAwdTBgagDHBwcHBx8M7xbOLirUFF9HhwcHBwcHPyUDxJEA1G2YJF9weDg4ODg4OD5wkP3gMDUfODg4ODg4E+AZ4NC9fno79XGAzg4ODg4+JPg3aBQ/f9UgSN8kAAcHBwcHHwR/GkDHBwcHBx8wfgB7poELngvsK0AAAAASUVORK5CYII=">
+          </div>
+        </div>
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/post/cc46.html'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>那些开发中的css技巧</p>
+          <p class='content'>在开发中合理利用css，可以大大提高开发效率
+</p>
+        </a>
+      
+      
+        <a class='next' href='/post/9487.html'>
+          <p class='title'>如何搭建个人博客?<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>使用hexo搭建个人博客
+
+
+搭建博客的框架很多，个人比较偏向于hexo框架：
+hexo只需要专注于写文档而不需要过分担心别的问题。
+hexo比较成熟，如果遇到问题也可以得到很好的解决。
+hex...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow blur" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
   
+
+  
     
     
 
 
 
+
+  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -607,10 +786,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="JS常用知识点总结";
   pdata.commentPath="";
-  pdata.commentPlaceholder="";
+  pdata.commentPlaceholder="对于《JS常用知识点总结》有什么想对我说的呢？";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   

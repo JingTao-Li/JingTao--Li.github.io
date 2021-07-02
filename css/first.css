@@ -26,6 +26,12 @@
   font-style: 'normal';
 }
 @font-face {
+  font-family: 'Andale Mono';
+  src: url("https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/AndaleMono-1.ttf");
+  font-weight: 'normal';
+  font-style: 'normal';
+}
+@font-face {
   font-family: 'Varela Round';
   src: url("https://cdn.jsdelivr.net/gh/volantis-x/cdn-fonts/VarelaRound/VarelaRound-Regular.ttf");
   font-weight: 'normal';
@@ -84,7 +90,7 @@ body {
   background-color: var(--color-site-body);
   text-rendering: optimizelegibility;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -469,7 +475,7 @@ th {
   height: 100%;
 }
 .cover-wrapper#full {
-  height: calc(100vh + 100px);
+  height: calc(70vh + 100px);
   padding-bottom: 100px;
 }
 .cover-wrapper#half {
@@ -579,6 +585,11 @@ th {
 .cover-wrapper .cover-body .logo {
   max-height: 120px;
   max-width: calc(100% - 4 * 16px);
+}
+@media screen and (max-width: 768px) {
+  .cover-wrapper .cover-body .title {
+    font-size: 2.5rem;
+  }
 }
 @media screen and (min-height: 1024px) {
   .cover-wrapper .cover-body .title {
@@ -713,7 +724,7 @@ th {
 .cover-wrapper.search .bottom .menu .list-h a.active,
 .cover-wrapper.search .bottom .menu .list-h a:active {
   opacity: 1;
-  border-bottom: 2px solid var(--color-site-inner);
+  color: #007ad3;
 }
 .cover-wrapper.dock .menu,
 .cover-wrapper.featured .menu,
@@ -1693,7 +1704,7 @@ ul.list-v >li>a:hover {
   overflow: hidden;
   word-break: break-all;
   text-overflow: ellipsis;
-  font-size: 0.8125rem;
+  font-size: 0.8725rem;
   color: var(--color-meta);
 }
 #u-search .modal-body .modal-results .result .icon {

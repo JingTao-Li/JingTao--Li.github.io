@@ -23,6 +23,12 @@
   font-style: 'normal';
 }
 @font-face {
+  font-family: 'Andale Mono';
+  src: url("https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/AndaleMono-1.ttf");
+  font-weight: 'normal';
+  font-style: 'normal';
+}
+@font-face {
   font-family: 'Varela Round';
   src: url("https://cdn.jsdelivr.net/gh/volantis-x/cdn-fonts/VarelaRound/VarelaRound-Regular.ttf");
   font-weight: 'normal';
@@ -124,7 +130,7 @@
 .md div.btns p,
 .article div.btns a,
 .md div.btns a {
-  font-size: 0.8125rem;
+  font-size: 0.8725rem;
   color: var(--color-p);
 }
 .article div.btns b,
@@ -899,7 +905,7 @@ img.inline {
 .md .link-card p.url {
   flex-shrink: 0;
   color: var(--color-meta);
-  font-size: 0.8125rem;
+  font-size: 0.8725rem;
 }
 .md .link-group {
   display: grid;
@@ -1311,7 +1317,7 @@ p.p.logo {
 }
 span.p.code,
 p.p.code {
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Andale Mono, UbuntuMono, Monaco, monospace, courier, sans-serif;
 }
 span.p.left,
 p.p.left {
@@ -1740,8 +1746,8 @@ pre {
   margin: 1em 0;
   display: block;
   background: var(--color-block);
-  font-size: 0.8125rem;
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-size: 0.8725rem;
+  font-family: Andale Mono, UbuntuMono, Monaco, monospace, courier, sans-serif;
   border-radius: 4px;
   line-height: 1.5;
   -webkit-font-smoothing: auto;
@@ -1838,7 +1844,7 @@ pre {
   display: none;
 }
 .highlight >table .code {
-  padding: 20px 16px;
+  padding: 10px 16px;
   vertical-align: top;
   background-color: transparent;
 }
@@ -2089,7 +2095,7 @@ pre {
   color: #e24f5a;
 }
 .article mjx-container {
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Andale Mono, UbuntuMono, Monaco, monospace, courier, sans-serif;
   padding: 16px 8px;
   border-radius: 4px;
   min-width: 0 !important;
@@ -2230,7 +2236,7 @@ div.fancybox .gallery {
   overflow: hidden;
 }
 div.fancybox .image-caption {
-  font-size: 0.8125rem;
+  font-size: 0.8725rem;
   padding-top: 0.5em;
   padding-bottom: 1em;
   color: var(--color-meta);
@@ -2449,7 +2455,7 @@ article#comments #valine_container .vcards .vcontent blockquote {
 }
 article#comments #valine_container .vcards .vcontent code {
   color: var(--color-p);
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Andale Mono, UbuntuMono, Monaco, monospace, courier, sans-serif;
 }
 article#comments #valine_container .vcards .vcontent pre {
   background: var(--color-codeblock);
@@ -2944,8 +2950,8 @@ article#tag .all-tags ul li span:before {
   margin-bottom: 1em;
   overflow: auto;
   background: var(--color-codeblock);
-  font-size: 0.8125rem;
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-size: 0.8725rem;
+  font-family: Andale Mono, UbuntuMono, Monaco, monospace, courier, sans-serif;
   border: 1px solid #ffebcb;
   padding: 16px;
   border-radius: 4px;
@@ -3194,7 +3200,7 @@ article .readmore {
 }
 footer.footer {
   position: relative;
-  padding: 40px 10px 120px 10px;
+  padding: 40px 10px;
   width: 100%;
   color: var(--color-site-footer);
   margin: 0px auto;
@@ -3203,7 +3209,7 @@ footer.footer {
 }
 footer.footer,
 footer.footer p {
-  font-size: 0.8125rem;
+  font-size: 0.8725rem;
 }
 footer.footer .licenses {
   color: fade(, 50%);
@@ -3341,7 +3347,7 @@ footer.footer .copyright p {
   margin: 0;
 }
 .article.l_friends .friends-group .friend-content .friend-card .friend-right p.friend-name {
-  font-size: 0.8125rem;
+  font-size: 0.8725rem;
   padding-top: 4px;
   font-weight: bold;
 }
@@ -3392,14 +3398,14 @@ footer.footer .copyright p {
 .md .img-wrap .image-caption {
   display: block;
   margin: 0.75rem auto;
-  font-size: 0.8125rem;
+  font-size: 0.8725rem;
   color: var(--color-meta);
 }
 .md .img-wrap .image-caption:empty {
   display: none;
 }
 #safearea {
-  margin: 16px 16px 0;
+  margin: 16px 0 0;
 }
 #l_body {
   position: relative;
@@ -3621,7 +3627,7 @@ footer.footer .copyright p {
 .l_main .post .article-meta .new-meta-box,
 .l_main .post .article-meta .new-meta-box p,
 .l_main .post .article-meta .new-meta-box i {
-  font-size: 0.8125rem;
+  font-size: 0.8725rem;
 }
 .l_main .post .article-meta .new-meta-box .new-meta-item {
   color: var(--color-meta);
@@ -4126,6 +4132,7 @@ img.lazyload:not(.placeholder).loaded {
   color: #ff6f00;
 }
 .meta-v3 .readmore {
+  display: none;
   font-weight: bold;
 }
 .meta-v3 .avatar {
