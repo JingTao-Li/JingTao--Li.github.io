@@ -1292,7 +1292,7 @@ var loadCSS = function( href, before, media, attributes ){
       path = defaultPath || decodeURI(window.location.pathname);
     }
     if (document.getElementById('gitalk-container') != null) {
-      var gitalk = new Gitalk(Object.assign({"clientID":"0f7dec984fa359926d3a","clientSecret":"ab3ea45c45a44a0abe2cf822f32fcb3c5cc914e4","repo":"myblog-comments","owner":"JingTao-Li","admin":null,"path":null}, {
+      var gitalk = new Gitalk(Object.assign({"clientID":"0f7dec984fa359926d3a","clientSecret":"ab3ea45c45a44a0abe2cf822f32fcb3c5cc914e4","repo":"myblog-comments","owner":"JingTao-Li","admin":["JingTao-Li"],"path":null}, {
 	  id: path,
 	  distractionFreeMode: false  // Facebook-like distraction free mode
     }));
