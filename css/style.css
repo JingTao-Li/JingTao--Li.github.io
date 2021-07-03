@@ -2269,11 +2269,11 @@ div.fancybox .image-caption:empty {
   border-color: #109aff;
 }
 .gt-container a.is--active {
-  color: #333;
+  color: #ff6f00;
   cursor: default;
 }
 .gt-container a.is--active:hover {
-  color: #333;
+  color: #ff6f00;
 }
 .gt-container .hide {
   display: none !important;
@@ -2711,7 +2711,7 @@ div.fancybox .image-caption:empty {
   right: 0;
 }
 .gt-container .gt-comment-body {
-  color: #333 !important;
+  color: #bbb !important;
 }
 .gt-container .gt-comment-body .email-hidden-toggle a {
   display: inline-block;
