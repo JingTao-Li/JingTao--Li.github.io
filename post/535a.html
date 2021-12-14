@@ -1,524 +1,597 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/logo.png">
-  <link rel="icon" href="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/logo.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="整理项目开发中经常使用的js片段">
-  <meta name="author" content="京涛">
-  <meta name="keywords" content="JS javascript">
-  <meta name="description" content="整理项目开发中经常使用的js片段">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JS常用工具类汇总(持续更新....)">
-<meta property="og:url" content="http://example.com/post/535a.html">
-<meta property="og:site_name" content="京涛个人博客">
-<meta property="og:description" content="整理项目开发中经常使用的js片段">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-06-29T11:41:45.000Z">
-<meta property="article:modified_time" content="2021-10-11T05:57:15.242Z">
-<meta property="article:author" content="京涛">
-<meta property="article:tag" content="JS">
-<meta property="article:tag" content="开发">
-<meta property="article:tag" content="前端">
-<meta name="twitter:card" content="summary_large_image">
-  
-  <title>JS常用工具类汇总(持续更新....) - 京涛个人博客</title>
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
     
     
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/vs2015.min.css" />
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
     
-  
+    
+    
+        <link rel="shortcut icon" href="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/logo.png">
+    
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
-  
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
 
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/daziyanse.css">
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
 
 
+    
+    
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            JS常用工具类汇总(持续更新....) | 京涛个人博客
+        
+    </title>
+    
+    
 <meta name="generator" content="Hexo 5.4.0"></head>
-
-
-<body>
-  <header style="height: 60vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>京涛</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                主页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">京涛个人博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
   </div>
-</nav>
+</header>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/post_banner_img.jpeg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="JS常用工具类汇总(持续更新....)">
-              
-            </span>
-
-            
-              <div class="mt-3">
+<div class="mdui-dialog" id="search">
   
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-29 19:41" pubdate>
-        June 29, 2021 pm
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      3k 字
-    </span>
-  
-
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      9 分钟
-    </span>
-  
-
-  
-  
-</div>
-
-            
-          </div>
-
-          
-        </div>
-      </div>
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
     </div>
-  </header>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
 
-  <main>
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">摸鱼必备</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/header.png"/>
+                
+            </div>
+            <div class="sidebar-author-name">京涛</div>
+            <div class="sidebar-description">记录 成为更好的自己</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="/doyoudo_jingtao@163.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/JingTao-Li" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-wechat"></i></span>
+                    <a target="_blank" rel="noopener" href="https://twitter.com/UPi0H768yaQUWYp" class="mdui-chip-title">Twitter</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://steamcommunity.com/id/18790425264/" class="mdui-chip-title">Steam</a>
+                </div>
+            
+        </div>
+        
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
     
       
+        <img src = https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/JS%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB%E6%B1%87%E6%80%BB(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0....)/header_img.png >
+      
+      <div class="mdui-card-media-covered">
+        <div class="post-header"> 
+  <a class="post-header-title" href="/post/535a.html">JS常用工具类汇总(持续更新....)</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-06-29
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2021-12-14
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">JS常用工具类汇总(持续更新....)</h1>
-            
-            <div class="markdown-body">
-              <p>整理项目开发中经常使用的js片段</p>
+
+
+      </div>
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=JS常用工具类汇总(持续更新....)&url=http://example.com/post/535a.html&pic=http://example.comhttps://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/logo.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=JS常用工具类汇总(持续更新....)&url=http://example.com/post/535a.html&via=京涛" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/post/535a.html" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=http://example.com/post/535a.html" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://example.com/post/535a.html&title=JS常用工具类汇总(持续更新....)" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=京涛个人博客&title=JS常用工具类汇总(持续更新....)&summary=记录 成为更好的自己&pics=http://example.comhttps://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/logo.png&url=http://example.com/post/535a.html" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=http://example.com/post/535a.html&text=JS常用工具类汇总(持续更新....)" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JS/ >JS</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/%E5%BC%80%E5%8F%91/ >开发</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/%E5%89%8D%E7%AB%AF/ >前端</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>整理项目开发中经常使用的js片段</p>
 <span id="more"></span>
 
 
 <!-- ############################################ 2.封装一个函数：创建a标签并打开新网页 ############################################ -->
-<h3 id="创建a标签-打开新页面"><a href="#创建a标签-打开新页面" class="headerlink" title="创建a标签,打开新页面"></a>创建a标签,打开新页面</h3><figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 创建a标签,打开新页面 openURL()</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;String&#125;</span> </span>url 目标地址</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns <span class="hljs-variable">null</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">openURL</span>(<span class="hljs-params">url</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> aLabel = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;a&#x27;</span>);<br>  <span class="hljs-comment">//设置链接</span><br>  aLabel.setAttribute(<span class="hljs-string">&#x27;href&#x27;</span>, url);<br>  <span class="hljs-comment">//新窗口打开链接</span><br>  aLabel.setAttribute(<span class="hljs-string">&#x27;target&#x27;</span>, <span class="hljs-string">&#x27;_blank&#x27;</span>);<br>  <span class="hljs-comment">//设置标签ID</span><br>  aLabel.setAttribute(<span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-string">&#x27;reportpoint&#x27;</span>);<br>  <span class="hljs-comment">// 防止反复添加</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;reportpoint&#x27;</span>)) &#123;<br>    <span class="hljs-built_in">document</span>.body.removeChild(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;reportpoint&#x27;</span>));<br>  &#125;<br>  <span class="hljs-built_in">document</span>.body.appendChild(aLabel);<br>  aLabel.click();<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="创建a标签-打开新页面"><a href="#创建a标签-打开新页面" class="headerlink" title="创建a标签,打开新页面"></a>创建a标签,打开新页面</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建a标签,打开新页面 openURL()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;String&#125;</span> </span>url 目标地址</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="variable">null</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">openURL</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> aLabel = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  <span class="comment">//设置链接</span></span><br><span class="line">  aLabel.setAttribute(<span class="string">&#x27;href&#x27;</span>, url);</span><br><span class="line">  <span class="comment">//新窗口打开链接</span></span><br><span class="line">  aLabel.setAttribute(<span class="string">&#x27;target&#x27;</span>, <span class="string">&#x27;_blank&#x27;</span>);</span><br><span class="line">  <span class="comment">//设置标签ID</span></span><br><span class="line">  aLabel.setAttribute(<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;reportpoint&#x27;</span>);</span><br><span class="line">  <span class="comment">// 防止反复添加</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.getElementById(<span class="string">&#x27;reportpoint&#x27;</span>)) &#123;</span><br><span class="line">    <span class="built_in">document</span>.body.removeChild(<span class="built_in">document</span>.getElementById(<span class="string">&#x27;reportpoint&#x27;</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(aLabel);</span><br><span class="line">  aLabel.click();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <!-- ############################################ 2.end ############################################ -->
 
 <!-- ############################################ 3.封装防抖函数 ############################################ -->
+
 <h3 id="防抖函数"><a href="#防抖函数" class="headerlink" title="防抖函数"></a>防抖函数</h3><p>防抖函数的原理就是通过延时器控制用户在短时间内进行重复操作的时候取消上一次操作</p>
-<figure class="highlight js"><figcaption><span>防抖函数</span></figcaption><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 防抖函数 debounce()</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;function&#125;</span> </span>fn 事件触发的操作</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> </span>delay 多少毫秒内连续触发事件，不会执行</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns <span class="hljs-type">&#123;Function&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">fn, delay</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span> ;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> self = <span class="hljs-built_in">this</span> ; <span class="hljs-comment">// 注意this指向</span><br>    args = <span class="hljs-built_in">arguments</span>; <span class="hljs-comment">// 拿到函数的入参</span><br><br>    timer &amp;&amp; <span class="hljs-built_in">clearTimeout</span>(timer);<br>    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      fn.apply(self, args);<br>    &#125;, delay)<br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
-<figure class="highlight js"><figcaption><span>如何使用？</span></figcaption><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">// 假设现有以下点击事件，clickEvent()</span><br><span class="hljs-keyword">let</span> input1 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;input1&#x27;</span>);<br>input1.addEventListener(<span class="hljs-string">&#x27;keyup&#x27;</span>,debounce(action1,<span class="hljs-number">1000</span>))<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">action1</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(input1.value)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>防抖函数</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 防抖函数 debounce()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;function&#125;</span> </span>fn 事件触发的操作</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>delay 多少毫秒内连续触发事件，不会执行</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="type">&#123;Function&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span> ;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> self = <span class="built_in">this</span> ; <span class="comment">// 注意this指向</span></span><br><span class="line">    args = <span class="built_in">arguments</span>; <span class="comment">// 拿到函数的入参</span></span><br><span class="line"></span><br><span class="line">    timer &amp;&amp; <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.apply(self, args);</span><br><span class="line">    &#125;, delay)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 假设现有以下点击事件，clickEvent()</span></span><br><span class="line"><span class="keyword">let</span> input1 = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;input1&#x27;</span>);</span><br><span class="line">input1.addEventListener(<span class="string">&#x27;keyup&#x27;</span>,debounce(action1,<span class="number">1000</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">action1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(input1.value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <!-- ############################################ 3.end ############################################ -->
 
 <!-- ############################################ 4.封装节流函数 ############################################ -->
+
 <h3 id="节流函数"><a href="#节流函数" class="headerlink" title="节流函数"></a>节流函数</h3><p>节流函数的原理就是通过控制延时器,当高频事件触发，n秒内只会执行一次</p>
-<figure class="highlight js"><figcaption><span>节流函数</span></figcaption><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 节流函数 throttle()</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;function&#125;</span> </span>fn 事件触发的操作</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> </span>delay 多少毫秒内连续触发事件，只会执行一次</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns <span class="hljs-type">&#123;Function&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle</span>(<span class="hljs-params">fn, delay</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span> ;<br>  <span class="hljs-keyword">let</span> flag = <span class="hljs-literal">true</span> ; <span class="hljs-comment">// 当前是否正在执行...</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (!flag) <span class="hljs-keyword">return</span><br>    flag = <span class="hljs-literal">false</span>; <br>    <span class="hljs-keyword">let</span> self = <span class="hljs-built_in">this</span> ; <span class="hljs-comment">// 注意this指向</span><br>    args = <span class="hljs-built_in">arguments</span>; <span class="hljs-comment">// 拿到函数的入参</span><br><br>    timer &amp;&amp; <span class="hljs-built_in">clearTimeout</span>(timer);<br>    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      flag = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 时间到了，可以继续执行下一次事件</span><br>      fn.apply(self, args);<br>    &#125;, delay)<br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>节流函数</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 节流函数 throttle()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;function&#125;</span> </span>fn 事件触发的操作</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>delay 多少毫秒内连续触发事件，只会执行一次</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="type">&#123;Function&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span> ;</span><br><span class="line">  <span class="keyword">let</span> flag = <span class="literal">true</span> ; <span class="comment">// 当前是否正在执行...</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!flag) <span class="keyword">return</span></span><br><span class="line">    flag = <span class="literal">false</span>; </span><br><span class="line">    <span class="keyword">let</span> self = <span class="built_in">this</span> ; <span class="comment">// 注意this指向</span></span><br><span class="line">    args = <span class="built_in">arguments</span>; <span class="comment">// 拿到函数的入参</span></span><br><span class="line"></span><br><span class="line">    timer &amp;&amp; <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      flag = <span class="literal">true</span>; <span class="comment">// 时间到了，可以继续执行下一次事件</span></span><br><span class="line">      fn.apply(self, args);</span><br><span class="line">    &#125;, delay)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>使用的规则同 <a href='#防抖函数'> 防抖函数 </a></p>
 <hr>
 <!-- ############################################ 4.end ############################################ -->
 
 <!-- #################################### 5.将字符串运行成js脚本的几种方式 #################################### -->
-<h3 id="将字符串运行成js脚本的几种方式"><a href="#将字符串运行成js脚本的几种方式" class="headerlink" title="将字符串运行成js脚本的几种方式"></a>将字符串运行成js脚本的几种方式</h3><figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-number">1.</span> <span class="hljs-built_in">eval</span>(<span class="hljs-string">&#x27;字符串&#x27;</span>)<br><span class="hljs-number">2.</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Function</span>(<span class="hljs-string">&#x27;字符串&#x27;</span>)<br><br><span class="hljs-number">3.</span> <span class="hljs-built_in">setTimeout</span>(<span class="hljs-string">&#x27;字符串&#x27;</span>, <span class="hljs-number">1000</span>)<br><span class="hljs-number">4.</span> <span class="hljs-built_in">setInterval</span>(<span class="hljs-string">&#x27;字符串&#x27;</span>, <span class="hljs-number">1000</span>)<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="将字符串运行成js脚本的几种方式"><a href="#将字符串运行成js脚本的几种方式" class="headerlink" title="将字符串运行成js脚本的几种方式"></a>将字符串运行成js脚本的几种方式</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="built_in">eval</span>(<span class="string">&#x27;字符串&#x27;</span>)</span><br><span class="line"><span class="number">2.</span> <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">&#x27;字符串&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> <span class="built_in">setTimeout</span>(<span class="string">&#x27;字符串&#x27;</span>, <span class="number">1000</span>)</span><br><span class="line"><span class="number">4.</span> <span class="built_in">setInterval</span>(<span class="string">&#x27;字符串&#x27;</span>, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+
 <hr>
 <!-- #################################### 5.end #################################### -->
 
 <!-- #################################### 6.浏览器复制内容到剪切板 #################################### -->
-<h3 id="浏览器复制内容到剪切板"><a href="#浏览器复制内容到剪切板" class="headerlink" title="浏览器复制内容到剪切板"></a>浏览器复制内容到剪切板</h3><figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 浏览器复制内容到剪切板 copyText()</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> </span>text 需要复制的内容</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns <span class="hljs-variable">null</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> copyText = <span class="hljs-function">(<span class="hljs-params">text</span>)=&gt;</span>&#123;<br>  <span class="hljs-keyword">var</span> range = <span class="hljs-built_in">document</span>.createRange();<br>  <span class="hljs-keyword">var</span> copyDOM = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;a&#x27;</span>);<br>  copyDOM.innerHTML = text;<br>  <span class="hljs-built_in">window</span>.getSelection().removeAllRanges();<br>  <span class="hljs-built_in">document</span>.body.appendChild(copyDOM)<br>  range.selectNode(copyDOM);<br>  <span class="hljs-built_in">window</span>.getSelection().addRange(range);<br>  <span class="hljs-keyword">var</span> successful = <span class="hljs-built_in">document</span>.execCommand(<span class="hljs-string">&#x27;copy&#x27;</span>);<br>  <span class="hljs-keyword">if</span>(successful)&#123;<br>    <span class="hljs-comment">// 复制成功到剪切板</span><br>  &#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-comment">// 复制失败，一般是因为浏览器不支持复制</span><br>  &#125;<br>  <span class="hljs-built_in">document</span>.body.removeChild(copyDOM)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="浏览器复制内容到剪切板"><a href="#浏览器复制内容到剪切板" class="headerlink" title="浏览器复制内容到剪切板"></a>浏览器复制内容到剪切板</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 浏览器复制内容到剪切板 copyText()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>text 需要复制的内容</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="variable">null</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> copyText = <span class="function">(<span class="params">text</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> range = <span class="built_in">document</span>.createRange();</span><br><span class="line">  <span class="keyword">var</span> copyDOM = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  copyDOM.innerHTML = text;</span><br><span class="line">  <span class="built_in">window</span>.getSelection().removeAllRanges();</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(copyDOM)</span><br><span class="line">  range.selectNode(copyDOM);</span><br><span class="line">  <span class="built_in">window</span>.getSelection().addRange(range);</span><br><span class="line">  <span class="keyword">var</span> successful = <span class="built_in">document</span>.execCommand(<span class="string">&#x27;copy&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(successful)&#123;</span><br><span class="line">    <span class="comment">// 复制成功到剪切板</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">// 复制失败，一般是因为浏览器不支持复制</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">document</span>.body.removeChild(copyDOM)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <!-- #################################### 6.end #################################### -->
 
 <!-- #################################### 7.取随机字符串 #################################### -->
 
 <h3 id="取随机字符串"><a href="#取随机字符串" class="headerlink" title="取随机字符串"></a>取随机字符串</h3><p>取随机字符串根据业务的不同会有不一样的取值方式，用作签名的一部分、用做随机密码….<br>这里我采用的是获取长度不定、去除容易混淆的字符oOLl,9gq,Vv,Uu,I1的随机位数的随机字符</p>
-<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 取随机字符串 randomString()</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> </span>len 随机字符串的长度</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns <span class="hljs-variable">null</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randomString</span>(<span class="hljs-params">len</span>) </span>&#123;<br>  len = len || <span class="hljs-number">32</span>; <span class="hljs-comment">// 默认随机生成32位长度字符串</span><br>  <span class="hljs-keyword">var</span> $chars = <span class="hljs-string">&#x27;ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678&#x27;</span>;    <span class="hljs-comment">/****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/</span><br>  <span class="hljs-keyword">var</span> maxPos = $chars.length;<br>  <span class="hljs-keyword">var</span> randomStr = <span class="hljs-string">&#x27;&#x27;</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>    randomStr += $chars.charAt(<span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * maxPos));<br>  &#125;<br>  <span class="hljs-keyword">return</span> randomStr;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 取随机字符串 randomString()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>len 随机字符串的长度</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="variable">null</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomString</span>(<span class="params">len</span>) </span>&#123;</span><br><span class="line">  len = len || <span class="number">32</span>; <span class="comment">// 默认随机生成32位长度字符串</span></span><br><span class="line">  <span class="keyword">var</span> $chars = <span class="string">&#x27;ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678&#x27;</span>;    <span class="comment">/****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/</span></span><br><span class="line">  <span class="keyword">var</span> maxPos = $chars.length;</span><br><span class="line">  <span class="keyword">var</span> randomStr = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    randomStr += $chars.charAt(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * maxPos));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> randomStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E5%BC%80%E5%8F%91/">开发</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/JS/">JS</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%BC%80%E5%8F%91/">开发</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
-              
-              
-                <div class="post-prevnext">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/post/cc46.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">那些开发中的css技巧</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/post/9487.html">
-                        <span class="hidden-mobile">hexo + volantis 搭建个人博客?</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+<hr>
+<!-- #################################### 7.end #################################### -->
 
-            
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
-  <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-        var options = Object.assign(
-          {"clientID":"0f7dec984fa359926d3a","clientSecret":"ab3ea45c45a44a0abe2cf822f32fcb3c5cc914e4","repo":"myblog-comments","owner":"JingTao-Li","admin":["JingTao-Li"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
-          {
-            id: 'a54f6266d5bb4674812dc6c0bc0a5228'
-          }
-        )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
-      });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+<!-- #################################### 8.异步加载一段js脚本 #################################### -->
 
+<h3 id="异步加载一段js脚本"><a href="#异步加载一段js脚本" class="headerlink" title="异步加载一段js脚本"></a>异步加载一段js脚本</h3><p>如： 异步引入网页悬浮脚本、异步引入高德地图、腾讯地图等。</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description </span>异步加载  一段js放在 header</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;object&#125;</span> <span class="variable">url</span></span> - js 的 url</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;function&#125;</span> <span class="variable">callback</span></span> - 成功回调</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="type">&#123; promise&lt;any&gt;&#125;</span></span>&#125; promise</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> loadScript = <span class="function">(<span class="params">url: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> script: <span class="built_in">any</span> = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">      script.type = <span class="string">&#x27;text/javascript&#x27;</span></span><br><span class="line">      <span class="keyword">if</span> (script.readyState) &#123;</span><br><span class="line">        <span class="comment">//IE</span></span><br><span class="line">        script.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (</span><br><span class="line">            script.readyState == <span class="string">&#x27;loaded&#x27;</span> ||</span><br><span class="line">            script.readyState == <span class="string">&#x27;complete&#x27;</span></span><br><span class="line">          ) &#123;</span><br><span class="line">            script.onreadystatechange = <span class="literal">null</span></span><br><span class="line">            <span class="built_in">Promise</span>.resolve(<span class="number">0</span>)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//Others: Firefox, Safari, Chrome, and Opera</span></span><br><span class="line">        script.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="built_in">Promise</span>.resolve(<span class="number">0</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      script.src = url</span><br><span class="line">      <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="built_in">Promise</span>.reject(e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-              </article>
-            
-          </article>
-        </div>
-      </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
+<hr>
+<!-- #################################### 8.end #################################### -->
 
-      </div>
-    
+<!-- #################################### 9.获取页面高度 #################################### -->
+
+<h3 id="获取页面高度"><a href="#获取页面高度" class="headerlink" title="获取页面高度"></a>获取页面高度</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// get page height</span></span><br><span class="line"><span class="keyword">const</span> getPageHeight = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> g = <span class="built_in">document</span></span><br><span class="line">  <span class="keyword">const</span> a = g.body</span><br><span class="line">  <span class="keyword">const</span> f = g.documentElement</span><br><span class="line">  <span class="keyword">const</span> d = g.compatMode === <span class="string">&#x27;BackCompat&#x27;</span> ? a : g.documentElement</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max(f.scrollHeight, a.scrollHeight, d.clientHeight)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- #################################### 9.end #################################### -->
+
+<!-- #################################### 10.获取页面可视高度 #################################### -->
+
+<h3 id="获取页面可视高度"><a href="#获取页面可视高度" class="headerlink" title="获取页面可视高度"></a>获取页面可视高度</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// get page view height</span></span><br><span class="line"><span class="keyword">const</span> getPageViewHeight = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> d = <span class="built_in">document</span></span><br><span class="line">  <span class="keyword">const</span> a = d.compatMode === <span class="string">&#x27;BackCompat&#x27;</span> ? d.body : d.documentElement</span><br><span class="line">  <span class="keyword">return</span> a.clientHeight</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- #################################### 10.end #################################### -->
+
+<!-- #################################### 11.获取页面可视宽度 #################################### -->
+
+<h3 id="获取页面可视宽度"><a href="#获取页面可视宽度" class="headerlink" title="获取页面可视宽度"></a>获取页面可视宽度</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// get page view width</span></span><br><span class="line"><span class="keyword">const</span> getPageViewWidth = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> d = <span class="built_in">document</span></span><br><span class="line">  <span class="keyword">const</span> a = d.compatMode === <span class="string">&#x27;BackCompat&#x27;</span> ? d.body : d.documentElement</span><br><span class="line">  <span class="keyword">return</span> a.clientWidth</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- #################################### 11.end #################################### -->
+
+<!-- #################################### 12.获取页面宽度 #################################### -->
+
+<h3 id="获取页面宽度"><a href="#获取页面宽度" class="headerlink" title="获取页面宽度"></a>获取页面宽度</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// get page width</span></span><br><span class="line"><span class="keyword">const</span> getPageWidth = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> g = <span class="built_in">document</span></span><br><span class="line">  <span class="keyword">const</span> a = g.body</span><br><span class="line">  <span class="keyword">const</span> f = g.documentElement</span><br><span class="line">  <span class="keyword">const</span> d = g.compatMode === <span class="string">&#x27;BackCompat&#x27;</span> ? a : g.documentElement</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max(f.scrollWidth, a.scrollWidth, d.clientWidth)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- #################################### 12.end #################################### -->
+
+<!-- #################################### 13.判断当前设备 #################################### -->
+
+<h3 id="判断当前设备"><a href="#判断当前设备" class="headerlink" title="判断当前设备"></a>判断当前设备</h3><h4 id="是否为安卓设备"><a href="#是否为安卓设备" class="headerlink" title="是否为安卓设备"></a>是否为安卓设备</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> isAndroidMobileDevice = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/android/i</span>.test(navigator.userAgent.toLowerCase())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="是否为苹果设备"><a href="#是否为苹果设备" class="headerlink" title="是否为苹果设备"></a>是否为苹果设备</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> isAppleMobileDevice = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/iphone|ipod|ipad|Macintosh/i</span>.test(navigator.userAgent.toLowerCase())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="是否为iPhoneX"><a href="#是否为iPhoneX" class="headerlink" title="是否为iPhoneX"></a>是否为iPhoneX</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> isIphonex = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// X XS, XS Max, XR</span></span><br><span class="line">  <span class="keyword">const</span> xSeriesConfig = [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">devicePixelRatio</span>: <span class="number">3</span>,</span><br><span class="line">      <span class="attr">width</span>: <span class="number">375</span>,</span><br><span class="line">      <span class="attr">height</span>: <span class="number">812</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">devicePixelRatio</span>: <span class="number">3</span>,</span><br><span class="line">      <span class="attr">width</span>: <span class="number">414</span>,</span><br><span class="line">      <span class="attr">height</span>: <span class="number">896</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">devicePixelRatio</span>: <span class="number">2</span>,</span><br><span class="line">      <span class="attr">width</span>: <span class="number">414</span>,</span><br><span class="line">      <span class="attr">height</span>: <span class="number">896</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; <span class="built_in">window</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> isIOS = <span class="regexp">/iphone/gi</span>.test(<span class="built_in">window</span>.navigator.userAgent)</span><br><span class="line">    <span class="keyword">if</span> (!isIOS) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">const</span> &#123; devicePixelRatio, screen &#125; = <span class="built_in">window</span></span><br><span class="line">    <span class="keyword">const</span> &#123; width, height &#125; = screen</span><br><span class="line">    <span class="keyword">return</span> xSeriesConfig.some(</span><br><span class="line">      <span class="function">(<span class="params">item</span>) =&gt;</span></span><br><span class="line">        item.devicePixelRatio === devicePixelRatio &amp;&amp;</span><br><span class="line">        item.width === width &amp;&amp;</span><br><span class="line">        item.height === height</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="是否为手机设备"><a href="#是否为手机设备" class="headerlink" title="是否为手机设备"></a>是否为手机设备</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> isMobileUserAgent = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/iphone|ipod|android.*mobile|windows.*phone|blackberry.*mobile/i</span>.test(</span><br><span class="line">    <span class="built_in">window</span>.navigator.userAgent.toLowerCase()</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- #################################### 13.end #################################### -->
+
+<!-- #################################### 14.设置cookie #################################### -->
+
+<h3 id="设置cookie"><a href="#设置cookie" class="headerlink" title="设置cookie"></a>设置cookie</h3><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description </span>设置 cookie</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params <span class="type">&#123;string&#125;</span> <span class="variable">cookie</span></span> -键名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params <span class="type">&#123;any&#125;</span> <span class="variable">value</span></span> -存入的值</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params <span class="type">&#123;Hours&#125;</span> <span class="variable">number</span></span> -有效期限</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> setCookie = <span class="function">(<span class="params">name: <span class="built_in">string</span>, value: <span class="built_in">any</span>, Hours: <span class="built_in">number</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">  <span class="keyword">const</span> offset = <span class="number">8</span></span><br><span class="line">  <span class="keyword">const</span> utc = d.getTime() + d.getTimezoneOffset() * <span class="number">60000</span></span><br><span class="line">  <span class="keyword">const</span> nd = utc + <span class="number">3600000</span> * offset</span><br><span class="line">  <span class="keyword">const</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>(nd)</span><br><span class="line">  exp.setTime(exp.getTime() + Hours * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>)</span><br><span class="line">  <span class="built_in">document</span>.cookie =</span><br><span class="line">    name +</span><br><span class="line">    <span class="string">&#x27;=&#x27;</span> +</span><br><span class="line">    <span class="built_in">escape</span>(value) +</span><br><span class="line">    <span class="string">&#x27;;path=/;expires=&#x27;</span> +</span><br><span class="line">    exp.toUTCString() +</span><br><span class="line">    <span class="string">&#x27;;domain=360doc.com;&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- #################################### 14.end #################################### -->
+
+<!-- #################################### 15.获取字符串对应的字节数 #################################### -->
+
+<h3 id="获取字符串对应的字节数"><a href="#获取字符串对应的字节数" class="headerlink" title="获取字符串对应的字节数"></a>获取字符串对应的字节数</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description </span>获取字节数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param </span>s 字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> getBytesLength = <span class="function">(<span class="params">s: string</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> s.replace(<span class="regexp">/[^\x00-\xff]/gi</span>, <span class="string">&#x27;--&#x27;</span>).length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- #################################### 15.end #################################### -->
+
+<!-- #################################### 16.获取本地的时间 #################################### -->
+
+<h3 id="获取本地的时间"><a href="#获取本地的时间" class="headerlink" title="获取本地的时间"></a>获取本地的时间</h3><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取本地的时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> getServerTime = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> xmlHttp: XMLHttpRequest</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">srvTime</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">// FF, Opera, Safari, Chrome</span></span><br><span class="line">      xmlHttp = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err1) &#123;</span><br><span class="line">      <span class="comment">// IE</span></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        xmlHttp = <span class="keyword">new</span> ActiveXObject(<span class="string">&#x27;Msxml2.XMLHTTP&#x27;</span>)</span><br><span class="line">      &#125; <span class="keyword">catch</span> (err2) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          xmlHttp = <span class="keyword">new</span> ActiveXObject(<span class="string">&#x27;Microsoft.XMLHTTP&#x27;</span>)</span><br><span class="line">        &#125; <span class="keyword">catch</span> (eerr3) &#123;</span><br><span class="line">          <span class="comment">// AJAX not supported, use CPU time.</span></span><br><span class="line">          alert(<span class="string">&#x27;AJAX not supported&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    xmlHttp.open(<span class="string">&#x27;HEAD&#x27;</span>, <span class="built_in">window</span>.location.href.toString(), <span class="literal">false</span>)</span><br><span class="line">    xmlHttp.setRequestHeader(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/html&#x27;</span>)</span><br><span class="line">    xmlHttp.send(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> xmlHttp.getResponseHeader(<span class="string">&#x27;Date&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> st = srvTime()</span><br><span class="line">  <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(st <span class="keyword">as</span> <span class="built_in">string</span>)</span><br><span class="line">  <span class="keyword">var</span> timestamp = date.getTime()</span><br><span class="line">  <span class="keyword">return</span> timestamp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<!-- #################################### 16.end #################################### -->
+
+<hr>
+<h3 id="获取浏览器的Cookie的值"><a href="#获取浏览器的Cookie的值" class="headerlink" title="获取浏览器的Cookie的值"></a>获取浏览器的Cookie的值</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取浏览器的Cookie的值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> cookie = <span class="function"><span class="params">name</span> =&gt;</span> <span class="string">`; <span class="subst">$&#123;<span class="built_in">document</span>.cookie&#125;</span>`</span>.split(<span class="string">`; <span class="subst">$&#123;name&#125;</span>=`</span>).pop().split(<span class="string">&#x27;;&#x27;</span>).shift();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取token </span></span><br><span class="line">cookie(<span class="string">&#x27;TOKEN&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="颜色RGB转十六进制"><a href="#颜色RGB转十六进制" class="headerlink" title="颜色RGB转十六进制"></a>颜色RGB转十六进制</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 颜色RGB转十六进制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> rgbToHex = <span class="function">(<span class="params">r, g, b</span>) =&gt;</span> <span class="string">&quot;#&quot;</span> + ((<span class="number">1</span> &lt;&lt; <span class="number">24</span>) + (r &lt;&lt; <span class="number">16</span>) + (g &lt;&lt; <span class="number">8</span>) + b).toString(<span class="number">16</span>).slice(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">rgbToHex(<span class="number">0</span>, <span class="number">51</span>, <span class="number">255</span>); </span><br><span class="line"><span class="comment">// Result: #0033ff</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="复制到剪贴板-新的API"><a href="#复制到剪贴板-新的API" class="headerlink" title="复制到剪贴板(新的API)"></a>复制到剪贴板(新的API)</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 复制到剪贴板</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> copyToClipboard = <span class="function">(<span class="params">text</span>) =&gt;</span> navigator.clipboard.writeText(text);</span><br><span class="line">    </span><br><span class="line">copyToClipboard(<span class="string">&quot;Hello World&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="清除所有Cookie"><a href="#清除所有Cookie" class="headerlink" title="清除所有Cookie"></a>清除所有Cookie</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 清除所有Cookie</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> clearCookies = <span class="built_in">document</span>.cookie.split(<span class="string">&#x27;;&#x27;</span>).forEach(<span class="function"><span class="params">cookie</span> =&gt;</span> <span class="built_in">document</span>.cookie = cookie.replace(<span class="regexp">/^ +/</span>, <span class="string">&#x27;&#x27;</span>).replace(<span class="regexp">/=.*/</span>, <span class="string">`=;expires=<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">0</span>).toUTCString()&#125;</span>;path=/`</span>));</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h3 id="生成随机十六进制颜色"><a href="#生成随机十六进制颜色" class="headerlink" title="生成随机十六进制颜色"></a>生成随机十六进制颜色</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 生成随机十六进制颜色</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> randomHex = <span class="function">() =&gt;</span> <span class="string">`#<span class="subst">$&#123;<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">0xffffff</span>).toString(<span class="number">16</span>).padEnd(<span class="number">6</span>, <span class="string">&quot;0&quot;</span>)&#125;</span>`</span>;</span><br><span class="line">    </span><br><span class="line"> <span class="built_in">console</span>.log(randomHex());</span><br><span class="line"><span class="comment">// Result: #92b008</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="从URL获取查询参数-–-JS"><a href="#从URL获取查询参数-–-JS" class="headerlink" title="从URL获取查询参数 – JS"></a>从URL获取查询参数 – JS</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 从URL获取查询参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> getParameters = <span class="function">(<span class="params">URL</span>) =&gt;</span> &#123;</span><br><span class="line">  URL = <span class="built_in">JSON</span>.parse(</span><br><span class="line">    <span class="string">&#x27;&#123;&quot;&#x27;</span> +</span><br><span class="line">      <span class="built_in">decodeURI</span>(URL.split(<span class="string">&quot;?&quot;</span>)[<span class="number">1</span>])</span><br><span class="line">        .replace(<span class="regexp">/&quot;/g</span>, <span class="string">&#x27;\\&quot;&#x27;</span>)</span><br><span class="line">        .replace(<span class="regexp">/&amp;/g</span>, <span class="string">&#x27;&quot;,&quot;&#x27;</span>)</span><br><span class="line">        .replace(<span class="regexp">/=/g</span>, <span class="string">&#x27;&quot;:&quot;&#x27;</span>) +</span><br><span class="line">      <span class="string">&#x27;&quot;&#125;&#x27;</span></span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(URL);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">getParameters(<span class="built_in">window</span>.location);</span><br><span class="line"><span class="comment">// Result: &#123; search : &quot;easy&quot;, page : 3 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者： </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 从URL获取查询参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">Object</span>.fromEntries(<span class="keyword">new</span> URLSearchParams(<span class="built_in">window</span>.location.search))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="检查用户的设备是否在暗黑模式"><a href="#检查用户的设备是否在暗黑模式" class="headerlink" title="检查用户的设备是否在暗黑模式"></a>检查用户的设备是否在暗黑模式</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检查用户的设备是否在暗黑模式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="variable">Boolean</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> isDarkMode = <span class="built_in">window</span>.matchMedia &amp;&amp; <span class="built_in">window</span>.matchMedia(<span class="string">&#x27;(prefers-color-scheme: dark)&#x27;</span>).matches</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="下载一个Excel文档"><a href="#下载一个Excel文档" class="headerlink" title="下载一个Excel文档"></a>下载一个Excel文档</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下载一个链接</span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">download</span>(<span class="params">link, name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!name)&#123;</span><br><span class="line">    name = link.slice(link.lastIndexOf(<span class="string">&#x27;/&#x27;</span>) + <span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> eleLink = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">  eleLink.download = name</span><br><span class="line">  eleLink.style.display = <span class="string">&#x27;none&#x27;</span></span><br><span class="line">  eleLink.href = link</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(eleLink)</span><br><span class="line">  eleLink.click()</span><br><span class="line">  <span class="built_in">document</span>.body.removeChild(eleLink)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下载excel</span></span><br><span class="line">download(<span class="string">&#x27;http://111.229.14.189/file/1.xlsx&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="浏览器中下载一些DOM内容-JSON文件"><a href="#浏览器中下载一些DOM内容-JSON文件" class="headerlink" title="浏览器中下载一些DOM内容/JSON文件"></a>浏览器中下载一些DOM内容/JSON文件</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 浏览器下载静态文件</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;String&#125;</span> </span>name 文件名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;String&#125;</span> </span>content 文件内容</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">downloadFile</span>(<span class="params">name, content</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> name == <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;The first parameter name is a must&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> content == <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;The second parameter content is a must&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!(content <span class="keyword">instanceof</span> Blob)) &#123;</span><br><span class="line">    content = <span class="keyword">new</span> Blob([content])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> link = URL.createObjectURL(content)</span><br><span class="line">  download(link, name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用下载</span></span><br><span class="line">downloadFile(<span class="string">&#x27;1.txt&#x27;</span>,<span class="string">&#x27;lalalallalalla&#x27;</span>)</span><br><span class="line">downloadFile(<span class="string">&#x27;1.json&#x27;</span>,<span class="built_in">JSON</span>.stringify(&#123;<span class="attr">name</span>:<span class="string">&#x27;hahahha&#x27;</span>&#125;))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="浏览器下载MP4-PDF-图片等"><a href="#浏览器下载MP4-PDF-图片等" class="headerlink" title="浏览器下载MP4/PDF/图片等"></a>浏览器下载MP4/PDF/图片等</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 浏览器下载MP4/PDF/图片等</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="comment">//提供一个link，完成文件下载，link可以是  http://xxx.com/xxx.xls</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">downloadByLink</span>(<span class="params">link,fileName</span>)</span>&#123;</span><br><span class="line">  axios.request(&#123;</span><br><span class="line">    <span class="attr">url</span>: link,</span><br><span class="line">    <span class="attr">responseType</span>: <span class="string">&#x27;blob&#x27;</span> <span class="comment">// 关键代码，让axios把响应改成blob</span></span><br><span class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> link = URL.createObjectURL(res.data)</span><br><span class="line">    download(link, fileName)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：会有同源策略的限制，需要配置转发</p>
+<hr>
+<h3 id="去除对象中的空元素"><a href="#去除对象中的空元素" class="headerlink" title="去除对象中的空元素"></a>去除对象中的空元素</h3><p>给后端发送数据的时候，要判断某个属性是不是空字符串，然后给后端拼参数，这块逻辑抽离出来就是<code>cleanObject</code>，代码实现如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * cleanObject 去除对象中的空元素</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> cleanObject = <span class="function">(<span class="params">object</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Object.assign(&#123;&#125;, object)</span></span><br><span class="line">  <span class="keyword">if</span> (!object) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> result = &#123; ...object &#125;;</span><br><span class="line">  <span class="built_in">Object</span>.keys(result).forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> value = result[key];</span><br><span class="line">    <span class="keyword">if</span> (isVoid(value)) &#123;</span><br><span class="line">      <span class="keyword">delete</span> result[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断是否为空</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isVoid = <span class="function">(<span class="params">value</span>) =&gt;</span></span><br><span class="line">  value === <span class="literal">undefined</span> || value === <span class="literal">null</span> || value === <span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> res = cleanObject(&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">pageSize</span>:<span class="number">10</span>,</span><br><span class="line">    <span class="attr">page</span>:<span class="number">1</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;res&quot;</span>, res) <span class="comment">// 输出 &#123; page:1,pageSize:10 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="常用的正则验证"><a href="#常用的正则验证" class="headerlink" title="常用的正则验证"></a>常用的正则验证</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 常用的正则验证</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> checkStr = <span class="function"><span class="keyword">function</span>(<span class="params">str, type</span>) </span>&#123; <span class="comment">// 常用正则验证，注意type大小写</span></span><br><span class="line">  <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;phone&#x27;</span>: <span class="comment">// 手机号码</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^1[3|4|5|6|7|8|9][0-9]&#123;9&#125;$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;tel&#x27;</span>: <span class="comment">// 座机</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^(0\d&#123;2,3&#125;-\d&#123;7,8&#125;)(-\d&#123;1,4&#125;)?$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;card&#x27;</span>: <span class="comment">// 身份证</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;pwd&#x27;</span>: <span class="comment">// 密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^[a-zA-Z]\w&#123;5,17&#125;$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;postal&#x27;</span>: <span class="comment">// 邮政编码</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/[1-9]\d&#123;5&#125;(?!\d)/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;QQ&#x27;</span>: <span class="comment">// QQ号</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^[1-9][0-9]&#123;4,9&#125;$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;email&#x27;</span>: <span class="comment">// 邮箱</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^[\w-]+(.[\w-]+)*@[\w-]+(.[\w-]+)+$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;money&#x27;</span>: <span class="comment">// 金额(小数点2位)</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^\d*(?:.\d&#123;0,2&#125;)?$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;URL&#x27;</span>: <span class="comment">// 网址</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/(http|ftp|https):/</span><span class="regexp">/[\w-_]+(.[\w-_]+)+([\w-.,@?^=%&amp;:/~+#]*[\w-@?^=%&amp;/~+#])?/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;IP&#x27;</span>: <span class="comment">// IP</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.)&#123;3&#125;(?:25[0-5]|2[0-4]\d|[01]?\d?\d))/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;date&#x27;</span>: <span class="comment">// 日期时间</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;) (\d&#123;2&#125;)(?::\d&#123;2&#125;|:(\d&#123;2&#125;):(\d&#123;2&#125;))$/</span>.test(str) ||</span><br><span class="line">        <span class="regexp">/^(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;number&#x27;</span>: <span class="comment">// 数字</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^[0-9]$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;english&#x27;</span>: <span class="comment">// 英文</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^[a-zA-Z]+$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;chinese&#x27;</span>: <span class="comment">// 中文</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^[\u4E00-\u9FA5]+$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;lower&#x27;</span>: <span class="comment">// 小写</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^[a-z]+$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;upper&#x27;</span>: <span class="comment">// 大写</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/^[A-Z]+$/</span>.test(str)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;HTML&#x27;</span>: <span class="comment">// HTML标记</span></span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/&lt;(&quot;[^&quot;]*&quot;|&#x27;[^&#x27;]*&#x27;|[^&#x27;&quot;&gt;])*&gt;/</span>.test(str)</span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="阿拉伯数字转中文大写数字"><a href="#阿拉伯数字转中文大写数字" class="headerlink" title="阿拉伯数字转中文大写数字"></a>阿拉伯数字转中文大写数字</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 阿拉伯数字转中文大写数字</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> numberToChinese = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123; <span class="comment">// 将阿拉伯数字翻译成中文的大写数字</span></span><br><span class="line">  <span class="keyword">let</span> AA = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&#x27;零&#x27;</span>, <span class="string">&#x27;一&#x27;</span>, <span class="string">&#x27;二&#x27;</span>, <span class="string">&#x27;三&#x27;</span>, <span class="string">&#x27;四&#x27;</span>, <span class="string">&#x27;五&#x27;</span>, <span class="string">&#x27;六&#x27;</span>, <span class="string">&#x27;七&#x27;</span>, <span class="string">&#x27;八&#x27;</span>, <span class="string">&#x27;九&#x27;</span>, <span class="string">&#x27;十&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> BB = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;十&#x27;</span>, <span class="string">&#x27;百&#x27;</span>, <span class="string">&#x27;仟&#x27;</span>, <span class="string">&#x27;萬&#x27;</span>, <span class="string">&#x27;億&#x27;</span>, <span class="string">&#x27;点&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> a = (<span class="string">&#x27;&#x27;</span> + num).replace(<span class="regexp">/(^0*)/g</span>, <span class="string">&#x27;&#x27;</span>).split(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> k = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> re = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = a[<span class="number">0</span>].length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (k) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        re = BB[<span class="number">7</span>] + re</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;0&#123;4&#125;//d&#123;&#x27;</span> + (a[<span class="number">0</span>].length - i - <span class="number">1</span>) + <span class="string">&#x27;&#125;$&#x27;</span>).test(a[<span class="number">0</span>])) &#123;</span><br><span class="line">          re = BB[<span class="number">4</span>] + re</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">        re = BB[<span class="number">5</span>] + re</span><br><span class="line">        BB[<span class="number">7</span>] = BB[<span class="number">5</span>]</span><br><span class="line">        k = <span class="number">0</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (k % <span class="number">4</span> === <span class="number">2</span> &amp;&amp; a[<span class="number">0</span>].charAt(i + <span class="number">2</span>) !== <span class="number">0</span> &amp;&amp; a[<span class="number">0</span>].charAt(i + <span class="number">1</span>) === <span class="number">0</span>) &#123;</span><br><span class="line">      re = AA[<span class="number">0</span>] + re</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (a[<span class="number">0</span>].charAt(i) !== <span class="number">0</span>) &#123;</span><br><span class="line">      re = AA[a[<span class="number">0</span>].charAt(i)] + BB[k % <span class="number">4</span>] + re</span><br><span class="line">    &#125;</span><br><span class="line">    k++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (a.length &gt; <span class="number">1</span>) &#123; <span class="comment">// 加上小数部分(如果有小数部分)</span></span><br><span class="line">    re += BB[<span class="number">6</span>]</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a[<span class="number">1</span>].length; i++) &#123;</span><br><span class="line">      re += AA[a[<span class="number">1</span>].charAt(i)]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (re === <span class="string">&#x27;一十&#x27;</span>) &#123;</span><br><span class="line">    re = <span class="string">&#x27;十&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (re.match(<span class="regexp">/^一/</span>) &amp;&amp; re.length === <span class="number">3</span>) &#123;</span><br><span class="line">    re = re.replace(<span class="string">&#x27;一&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> re</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="base64图片下载功能"><a href="#base64图片下载功能" class="headerlink" title="base64图片下载功能"></a>base64图片下载功能</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * base64图片下载功能</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> downloadFile = <span class="function"><span class="keyword">function</span>(<span class="params">base64, fileName</span>) </span>&#123; <span class="comment">//base64图片下载功能</span></span><br><span class="line">  <span class="keyword">let</span> base64ToBlob = <span class="function"><span class="keyword">function</span>(<span class="params">code</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> parts = code.split(<span class="string">&#x27;;base64,&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> contentType = parts[<span class="number">0</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">let</span> raw = <span class="built_in">window</span>.atob(parts[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">let</span> rawLength = raw.length;</span><br><span class="line">    <span class="keyword">let</span> uInt8Array = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(rawLength);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; rawLength; ++i) &#123;</span><br><span class="line">      uInt8Array[i] = raw.charCodeAt(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Blob([uInt8Array], &#123;</span><br><span class="line">      <span class="attr">type</span>: contentType</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">let</span> aLink = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  <span class="keyword">let</span> blob = base64ToBlob(base64); <span class="comment">//new Blob([content]);</span></span><br><span class="line">  <span class="keyword">let</span> evt = <span class="built_in">document</span>.createEvent(<span class="string">&quot;HTMLEvents&quot;</span>);</span><br><span class="line">  evt.initEvent(<span class="string">&quot;click&quot;</span>, <span class="literal">true</span>, <span class="literal">true</span>); <span class="comment">//initEvent不加后两个参数在FF下会报错  事件类型，是否冒泡，是否阻止浏览器的默认行为</span></span><br><span class="line">  aLink.download = fileName;</span><br><span class="line">  aLink.href = URL.createObjectURL(blob);</span><br><span class="line">  aLink.click();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </div>
-</div>
-
-<!-- Custom -->
-
-
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;margin-bottom: 15px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
     
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/post/cc46.html">
+        <i class="iconfont icon-angle-left"></i>
+        <span>那些开发中的css技巧</span>
       </a>
     
-
     
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <a rel="next" class="post-nav-item mdui-float-right" href="/post/9487.html">
+        <span>hexo + volantis 搭建个人博客?</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/post/535a.html" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAa%E6%A0%87%E7%AD%BE-%E6%89%93%E5%BC%80%E6%96%B0%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text">创建a标签,打开新页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">防抖函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">节流函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E8%A1%8C%E6%88%90js%E8%84%9A%E6%9C%AC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">将字符串运行成js脚本的几种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A4%8D%E5%88%B6%E5%86%85%E5%AE%B9%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF"><span class="toc-number">5.</span> <span class="toc-text">浏览器复制内容到剪切板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E9%9A%8F%E6%9C%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">6.</span> <span class="toc-text">取随机字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E4%B8%80%E6%AE%B5js%E8%84%9A%E6%9C%AC"><span class="toc-number">7.</span> <span class="toc-text">异步加载一段js脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%A1%B5%E9%9D%A2%E9%AB%98%E5%BA%A6"><span class="toc-number">8.</span> <span class="toc-text">获取页面高度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%A1%B5%E9%9D%A2%E5%8F%AF%E8%A7%86%E9%AB%98%E5%BA%A6"><span class="toc-number">9.</span> <span class="toc-text">获取页面可视高度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%A1%B5%E9%9D%A2%E5%8F%AF%E8%A7%86%E5%AE%BD%E5%BA%A6"><span class="toc-number">10.</span> <span class="toc-text">获取页面可视宽度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%A1%B5%E9%9D%A2%E5%AE%BD%E5%BA%A6"><span class="toc-number">11.</span> <span class="toc-text">获取页面宽度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E8%AE%BE%E5%A4%87"><span class="toc-number">12.</span> <span class="toc-text">判断当前设备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E4%B8%BA%E5%AE%89%E5%8D%93%E8%AE%BE%E5%A4%87"><span class="toc-number">12.1.</span> <span class="toc-text">是否为安卓设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E4%B8%BA%E8%8B%B9%E6%9E%9C%E8%AE%BE%E5%A4%87"><span class="toc-number">12.2.</span> <span class="toc-text">是否为苹果设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E4%B8%BAiPhoneX"><span class="toc-number">12.3.</span> <span class="toc-text">是否为iPhoneX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E4%B8%BA%E6%89%8B%E6%9C%BA%E8%AE%BE%E5%A4%87"><span class="toc-number">12.4.</span> <span class="toc-text">是否为手机设备</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEcookie"><span class="toc-number">13.</span> <span class="toc-text">设置cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AD%97%E8%8A%82%E6%95%B0"><span class="toc-number">14.</span> <span class="toc-text">获取字符串对应的字节数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%97%B6%E9%97%B4"><span class="toc-number">15.</span> <span class="toc-text">获取本地的时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84Cookie%E7%9A%84%E5%80%BC"><span class="toc-number">16.</span> <span class="toc-text">获取浏览器的Cookie的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2RGB%E8%BD%AC%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6"><span class="toc-number">17.</span> <span class="toc-text">颜色RGB转十六进制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E8%B4%B4%E6%9D%BF-%E6%96%B0%E7%9A%84API"><span class="toc-number">18.</span> <span class="toc-text">复制到剪贴板(新的API)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E6%89%80%E6%9C%89Cookie"><span class="toc-number">19.</span> <span class="toc-text">清除所有Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E9%A2%9C%E8%89%B2"><span class="toc-number">20.</span> <span class="toc-text">生成随机十六进制颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8EURL%E8%8E%B7%E5%8F%96%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0-%E2%80%93-JS"><span class="toc-number">21.</span> <span class="toc-text">从URL获取查询参数 – JS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E7%9A%84%E8%AE%BE%E5%A4%87%E6%98%AF%E5%90%A6%E5%9C%A8%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F"><span class="toc-number">22.</span> <span class="toc-text">检查用户的设备是否在暗黑模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%B8%AAExcel%E6%96%87%E6%A1%A3"><span class="toc-number">23.</span> <span class="toc-text">下载一个Excel文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%BA%9BDOM%E5%86%85%E5%AE%B9-JSON%E6%96%87%E4%BB%B6"><span class="toc-number">24.</span> <span class="toc-text">浏览器中下载一些DOM内容&#x2F;JSON文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BDMP4-PDF-%E5%9B%BE%E7%89%87%E7%AD%89"><span class="toc-number">25.</span> <span class="toc-text">浏览器下载MP4&#x2F;PDF&#x2F;图片等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%BB%E9%99%A4%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%9A%84%E7%A9%BA%E5%85%83%E7%B4%A0"><span class="toc-number">26.</span> <span class="toc-text">去除对象中的空元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E9%AA%8C%E8%AF%81"><span class="toc-number">27.</span> <span class="toc-text">常用的正则验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E8%BD%AC%E4%B8%AD%E6%96%87%E5%A4%A7%E5%86%99%E6%95%B0%E5%AD%97"><span class="toc-number">28.</span> <span class="toc-text">阿拉伯数字转中文大写数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base64%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E5%8A%9F%E8%83%BD"><span class="toc-number">29.</span> <span class="toc-text">base64图片下载功能</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
       </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '0f7dec984fa359926d3a',
+    clientSecret: 'ab3ea45c45a44a0abe2cf822f32fcb3c5cc914e4',
+    repo: 'myblog-comments',
+    owner: 'JingTao-Li',
+    admin: ['JingTao-Li'],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
+      
     </div>
-  </div>
-</div>
-    
 
-    
   </main>
-
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <div>你只管努力，剩下的交给天意！<div> 
-  </div>
-  
-
-  
-
-  
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2021 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        京涛
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
 </footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
   
   
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
 
 
 
 
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
 
 
 
 
-
-
-
-
-
-
-  
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/dianjichuzi.js"></script>
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
-
+<script src="/js/meadow.js"></script>
 
 </body>
-</html>
+</html >
