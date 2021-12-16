@@ -86,9 +86,6 @@ main {
 .mermaid {
   overflow-x: auto;
 }
-#toolbar {
-  background-color: #d4dcd6 !important;
-}
 pre,
 .highlight {
   background: #2d2d2d;
