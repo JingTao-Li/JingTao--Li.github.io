@@ -173,14 +173,13 @@
 <hr>
 <h3 id="base64图片下载功能"><a href="#base64图片下载功能" class="headerlink" title="base64图片下载功能"></a>base64图片下载功能</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * base64图片下载功能</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> downloadFile = <span class="function"><span class="keyword">function</span>(<span class="params">base64, fileName</span>) </span>&#123; <span class="comment">//base64图片下载功能</span></span><br><span class="line">  <span class="keyword">let</span> base64ToBlob = <span class="function"><span class="keyword">function</span>(<span class="params">code</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> parts = code.split(<span class="string">&#x27;;base64,&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> contentType = parts[<span class="number">0</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">let</span> raw = <span class="built_in">window</span>.atob(parts[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">let</span> rawLength = raw.length;</span><br><span class="line">    <span class="keyword">let</span> uInt8Array = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(rawLength);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; rawLength; ++i) &#123;</span><br><span class="line">      uInt8Array[i] = raw.charCodeAt(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Blob([uInt8Array], &#123;</span><br><span class="line">      <span class="attr">type</span>: contentType</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">let</span> aLink = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  <span class="keyword">let</span> blob = base64ToBlob(base64); <span class="comment">//new Blob([content]);</span></span><br><span class="line">  <span class="keyword">let</span> evt = <span class="built_in">document</span>.createEvent(<span class="string">&quot;HTMLEvents&quot;</span>);</span><br><span class="line">  evt.initEvent(<span class="string">&quot;click&quot;</span>, <span class="literal">true</span>, <span class="literal">true</span>); <span class="comment">//initEvent不加后两个参数在FF下会报错  事件类型，是否冒泡，是否阻止浏览器的默认行为</span></span><br><span class="line">  aLink.download = fileName;</span><br><span class="line">  aLink.href = URL.createObjectURL(blob);</span><br><span class="line">  aLink.click();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>开发</category>
         <category>懒人福音</category>
       </categories>
       <tags>
         <tag>JS</tag>
-        <tag>开发</tag>
-        <tag>前端</tag>
+        <tag>前端开发</tag>
         <tag>懒人福音</tag>
+        <tag>知识积累</tag>
       </tags>
   </entry>
   <entry>
@@ -254,7 +253,7 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>前端开发</category>
+        <category>知识积累</category>
       </categories>
       <tags>
         <tag>开发</tag>
@@ -279,11 +278,10 @@
 
 ]]></content>
       <categories>
-        <category>前端开发</category>
+        <category>知识积累</category>
       </categories>
       <tags>
-        <tag>开发</tag>
-        <tag>前端</tag>
+        <tag>前端开发</tag>
         <tag>面试题</tag>
       </tags>
   </entry>
@@ -341,12 +339,11 @@
 <!-- ############################################## 1. end ############################################## -->
 ]]></content>
       <categories>
-        <category>前端开发</category>
+        <category>知识积累</category>
       </categories>
       <tags>
         <tag>JS</tag>
-        <tag>开发</tag>
-        <tag>前端</tag>
+        <tag>前端开发</tag>
       </tags>
   </entry>
   <entry>
@@ -379,12 +376,10 @@
 
 ]]></content>
       <categories>
-        <category>前端开发</category>
         <category>懒人福音</category>
       </categories>
       <tags>
-        <tag>开发</tag>
-        <tag>前端</tag>
+        <tag>前端开发</tag>
         <tag>CSS</tag>
         <tag>懒人福音</tag>
       </tags>
