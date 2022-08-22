@@ -17,11 +17,11 @@
 
 ]]></content>
       <categories>
-        <category>面试题</category>
+        <category>前端面试题</category>
       </categories>
       <tags>
-        <tag>前端开发</tag>
         <tag>知识积累</tag>
+        <tag>前端开发</tag>
       </tags>
   </entry>
   <entry>
@@ -77,6 +77,7 @@
 <h3 id="11-Ios-新特性适配带有小横条的机型"><a href="#11-Ios-新特性适配带有小横条的机型" class="headerlink" title="11. Ios 新特性适配带有小横条的机型"></a>11. Ios 新特性适配带有小横条的机型</h3><figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">padding-bottom</span>: constant(safe-area-inset-bottom) <span class="meta">!important</span>;</span><br><span class="line">  <span class="attribute">padding-bottom</span>: env(safe-area-inset-bottom) <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
+        <category>前端知识积累</category>
         <category>CSS</category>
       </categories>
       <tags>
@@ -215,11 +216,40 @@
 <hr>
 <h3 id="35-递归拿出对象数组中所有指定的字段项，并返回新数组"><a href="#35-递归拿出对象数组中所有指定的字段项，并返回新数组" class="headerlink" title="35. 递归拿出对象数组中所有指定的字段项，并返回新数组"></a>35. 递归拿出对象数组中所有指定的字段项，并返回新数组</h3><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 递归拿出所有指定的字段项</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;Array&#125;</span> <span class="variable">list</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">key</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">child</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="type">&#123;Array&#125;</span> </span>返回所有key的集合</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getKeyList</span>(<span class="params">list: <span class="built_in">Array</span>&lt;<span class="built_in">any</span>&gt;, key: <span class="built_in">string</span>, child = <span class="string">&#x27;children&#x27;</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result: <span class="built_in">any</span>[] = [];</span><br><span class="line">  list.forEach(<span class="function">(<span class="params">listItem</span>) =&gt;</span> &#123;</span><br><span class="line">    listItem[key] &amp;&amp; result.push(listItem[key]);</span><br><span class="line">    <span class="keyword">if</span> (listItem[child] &amp;&amp; listItem[child].length) &#123;</span><br><span class="line">      result.push(...getKeyList(listItem[child], key, child));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
+        <category>前端知识积累</category>
         <category>Javascript</category>
       </categories>
       <tags>
+        <tag>知识积累</tag>
         <tag>前端开发</tag>
         <tag>懒人福音</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>持久化vuex</title>
+    <url>/post/83d9.html</url>
+    <content><![CDATA[<p>vue 项目中一般都需要存储用户的信息、用户保存的设置、一些操作的状态等等，大量的信息存储会选择数据库，但是像是用户下单状态、用户音视频通话状态、微信一键登录返回 code 等一些数据存储在数据库无疑是没有意义的。为了防止存储在 vuex 中的数据一经用户刷新页面就丢失导致体验不好的现象，我们可以对 vuex 进行持久化保存，同时可以区分一些数据是存储在 localStorage 中还是 sessionStorage 中。</p>
+<span id="more"></span>
+
+<hr>
+<blockquote>
+<p>原理： createStore 也就是创建 vuex 实例时，vuex 向外提供了 plugins 属性，plugins 的值是一个数据，它会向其中所有的元素注入 store 对象，为了方便实时获取到 store，并且会在 store 更新时触发所有 plugins 中的事件，用 subscribe 事件去监听每次 mutation 事件。</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> createStore&lt;RootState&gt;(&#123;</span><br><span class="line">  <span class="attr">modules</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">strict</span>: <span class="literal">true</span>, <span class="comment">// 是否开启严格模式</span></span><br><span class="line">  <span class="attr">plugins</span>: [], <span class="comment">// 元素为函数，并且函数的第一个参数是store对象</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="如此一来，可以实时获取到-store，并能够在-store-更新时触发回调，就可以直接操作-store-的存与取了"><a href="#如此一来，可以实时获取到-store，并能够在-store-更新时触发回调，就可以直接操作-store-的存与取了" class="headerlink" title="如此一来，可以实时获取到 store，并能够在 store 更新时触发回调，就可以直接操作 store 的存与取了"></a>如此一来，可以实时获取到 store，并能够在 store 更新时触发回调，就可以直接操作 store 的存与取了</h5><p>这个是负责存储和取值的实现：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> Socket &#123;</span><br><span class="line">  <span class="attr">key</span>: <span class="built_in">string</span>;</span><br><span class="line">  modules: Modules;</span><br><span class="line">  modulesKeys: ModulesKeys;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Modules &#123;</span><br><span class="line">  [propName: <span class="built_in">string</span>]: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> ModulesKeys &#123;</span><br><span class="line">  <span class="attr">local</span>: <span class="built_in">string</span>[];</span><br><span class="line">  session: <span class="built_in">string</span>[];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Mutation &#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="built_in">any</span>;</span><br><span class="line">  payload: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> exclude = [<span class="string">&#x27;actions&#x27;</span>, <span class="string">&#x27;getters&#x27;</span>, <span class="string">&#x27;mutations&#x27;</span>, <span class="string">&#x27;namespaced&#x27;</span>];</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Persistent</span>(<span class="params">&#123; key, modules, modulesKeys &#125;: Socket</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">store: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> localOldState = <span class="built_in">JSON</span>.parse(<span class="built_in">localStorage</span>.getItem(key) || <span class="string">&#x27;&#123;&#125;&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> sessionOldState = <span class="built_in">JSON</span>.parse(sessionStorage.getItem(key) || <span class="string">&#x27;&#123;&#125;&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> oldState: Modules = &#123;&#125;;</span><br><span class="line">    <span class="built_in">Object</span>.assign(oldState, localOldState, sessionOldState);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.keys(oldState).length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> oldKey <span class="keyword">in</span> oldState) &#123;</span><br><span class="line">        modules[oldKey] = oldState[oldKey];</span><br><span class="line">      &#125;</span><br><span class="line">      store.replaceState(modules);</span><br><span class="line">    &#125;</span><br><span class="line">    store.subscribe(<span class="function">(<span class="params">mutation: Mutation, state: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 判断是否需要缓存数据至localStorage</span></span><br><span class="line">      <span class="keyword">if</span> (modulesKeys.local.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> localData = setData(store.state, modulesKeys.local);</span><br><span class="line">        <span class="built_in">localStorage</span>.setItem(key, <span class="built_in">JSON</span>.stringify(localData));</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">localStorage</span>.removeItem(key);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 判断是否需要缓存数据至sessionStorage</span></span><br><span class="line">      <span class="keyword">if</span> (modulesKeys.session.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> sessionData = setData(store.state, modulesKeys.session);</span><br><span class="line">        sessionStorage.setItem(key, <span class="built_in">JSON</span>.stringify(sessionData));</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        sessionStorage.removeItem(key);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setData</span>(<span class="params">state: <span class="built_in">any</span>, <span class="built_in">module</span>: <span class="built_in">string</span>[]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data: Modules = &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> i <span class="keyword">of</span> <span class="built_in">module</span>) &#123;</span><br><span class="line">    data[i] = state[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="同时推荐一个-createLogger-的-plugin，可以实时打印-store-的更改"><a href="#同时推荐一个-createLogger-的-plugin，可以实时打印-store-的更改" class="headerlink" title="同时推荐一个 createLogger 的 plugin，可以实时打印 store 的更改"></a>同时推荐一个 createLogger 的 plugin，可以实时打印 store 的更改</h4><p>这里我的文档结构为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">| -- store</span><br><span class="line">  | -- modules</span><br><span class="line">    | -- app.ts</span><br><span class="line">    | -- user.ts</span><br><span class="line">  | -- plugins</span><br><span class="line">    | -- persistent.ts</span><br><span class="line">  index.ts</span><br></pre></td></tr></table></figure>
+<p>最终的 store/index.ts 代码如下：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore, createLogger &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Persistent <span class="keyword">from</span> <span class="string">&#x27;./plugins/persistent&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; userState &#125; <span class="keyword">from</span> <span class="string">&#x27;@/store/modules/user&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; appState &#125; <span class="keyword">from</span> <span class="string">&#x27;@/store/modules/app&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> debug = <span class="keyword">import</span>.meta.env.MODE !== <span class="string">&#x27;production&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> files = <span class="keyword">import</span>.meta.globEager(<span class="string">&#x27;./modules/*.ts&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里只是举例： user  app 模块</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> RootState &#123;</span><br><span class="line">  <span class="attr">user</span>: userState;</span><br><span class="line">  app: appState;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> modules: <span class="built_in">any</span> = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.keys(files).forEach(<span class="function">(<span class="params">c: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="built_in">module</span> = files[c].default;</span><br><span class="line">  <span class="keyword">const</span> moduleName: <span class="built_in">string</span> = c.replace(<span class="regexp">/^\.\/(.*)\/(.*)\.\w+$/</span>, <span class="string">&#x27;$2&#x27;</span>);</span><br><span class="line">  modules[moduleName] = <span class="built_in">module</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这是一个vuex本地存储插件，默认把vuex所有数据都做存储了</span></span><br><span class="line"><span class="comment">// local代表存储在localStorage里面，进行永久存储</span></span><br><span class="line"><span class="comment">// session代表存储在sessionStorage里面，进行临时存储</span></span><br><span class="line"><span class="comment">// 都接收Modules的文件名数组，如：[&#x27;app&#x27;, &#x27;keepAlive&#x27;, &#x27;user&#x27;]</span></span><br><span class="line"><span class="comment">// 用户相关的数据建议直接存储在local里面，session里面会导致打开新窗口时获取不到token值，因为session只针对当前会话</span></span><br><span class="line"><span class="keyword">const</span> persistent = Persistent(&#123;</span><br><span class="line">  <span class="attr">key</span>: <span class="string">&#x27;vuex&#x27;</span>,</span><br><span class="line">  modules,</span><br><span class="line">  <span class="attr">modulesKeys</span>: &#123;</span><br><span class="line">    <span class="attr">local</span>: <span class="built_in">Object</span>.keys(modules).filter(<span class="function"><span class="params">item</span> =&gt;</span> item !== <span class="string">&#x27;call&#x27;</span>),</span><br><span class="line">    <span class="attr">session</span>: [<span class="string">&#x27;call&#x27;</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> createStore&lt;RootState&gt;(&#123;</span><br><span class="line">  <span class="attr">modules</span>: &#123;</span><br><span class="line">    ...modules,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">strict</span>: debug,</span><br><span class="line">  <span class="attr">plugins</span>: debug ? [createLogger(), persistent] : [persistent],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端知识积累</category>
+        <category>Vue</category>
+      </categories>
+      <tags>
         <tag>知识积累</tag>
       </tags>
   </entry>
@@ -253,11 +283,12 @@
 <hr>
 ]]></content>
       <categories>
+        <category>前端知识积累</category>
         <category>Vue</category>
       </categories>
       <tags>
-        <tag>前端开发</tag>
         <tag>知识积累</tag>
+        <tag>前端开发</tag>
         <tag>Vue积累</tag>
       </tags>
   </entry>
@@ -350,7 +381,8 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>知识积累</category>
+        <category>前端知识积累</category>
+        <category>网络相关</category>
       </categories>
       <tags>
         <tag>前端开发</tag>
@@ -410,11 +442,12 @@
 <!-- ############################################## 1. end ############################################## -->
 ]]></content>
       <categories>
+        <category>前端知识积累</category>
         <category>Javascript</category>
       </categories>
       <tags>
-        <tag>前端开发</tag>
         <tag>知识积累</tag>
+        <tag>前端开发</tag>
       </tags>
   </entry>
   <entry>
