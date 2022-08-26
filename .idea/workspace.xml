@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="55bc0a65-796b-42cb-8f6b-1571d42ecc96" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/themes/ayer/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/layout/_partial/music.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/layout/_partial/music.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source-src/css/_partial/article.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source-src/css/_partial/article.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source-src/css/_partial/articles.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source-src/css/_partial/articles.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source-src/css/_partial/ayer.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source-src/css/_partial/ayer.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source-src/css/_partial/highlight.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source-src/css/_partial/highlight.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source-src/css/_variables.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source-src/css/_variables.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/css/fonts/remixicon.css" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source/css/fonts/remixicon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/dist/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source/dist/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/alipay.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source/images/alipay.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/cover1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/cover2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/cover4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/cover5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/cover6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/cover7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/mouse.cur" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source/images/mouse.cur" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/wechat.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source/images/wechat.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/hueman/_config.yml.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/hueman/layout/common/thumbnail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hueman/layout/common/thumbnail.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/hueman/source/css/_variables.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hueman/source/css/_variables.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/hueman/source/css/images/logo-header.png" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hueman/source/css/images/logo-header.png" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2DVjAnDYkNps2hkaqF62yO5IR10" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AtomConfig&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="55bc0a65-796b-42cb-8f6b-1571d42ecc96" name="变更" comment="" />
+      <created>1660791008835</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660791008835</updated>
+      <workItem from="1660791010360" duration="8000" />
+      <workItem from="1660791020936" duration="173000" />
+      <workItem from="1660810412395" duration="2590000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

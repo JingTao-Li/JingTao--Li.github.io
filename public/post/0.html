@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 记录" />
+       
+      <meta name="description" content="记录 成为更好的自己" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>国密4加密算法JS版本 |  京涛个人博客</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="https://myblogger-1305472061.cos.ap-shanghai.myqcloud.com/logo.png" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-国密4加密算法备份"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  国密4加密算法JS版本
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/0.html" class="article-date">
+  <time datetime="2022-08-26T01:42:59.882Z" itemprop="datePublished">2022-08-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E5%A4%87%E4%BB%BD/">个人备份</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">14 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>国密 4 加密算法，网上多是 JAVA 版本，偶然见到有一个 TS 版本的。为了和后端保持一致的加密算法，需要在前端处理一些加密信息，所以改写为 JS 版本，备份以防之后丢失。</p>
+<span id="more"></span>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @描述: 国密4加密算法</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>: Jingtaooo</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2022/3/31 11:26 上午</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@FilePath</span>: /src/utils/system/SM4Util.js</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> base64js <span class="keyword">from</span> <span class="string">&#x27;base64-js&#x27;</span>; <span class="comment">// 用base64-js模块包代替下面的base64js方法，减少代码量</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">SM4_Context</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">mode</span> = <span class="number">1</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">isPadding</span> = <span class="literal">true</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sk</span> = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">32</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stringToByte = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> bytes = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line">  <span class="keyword">var</span> len, c;</span><br><span class="line">  len = str.<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    c = str.<span class="title function_">charCodeAt</span>(i);</span><br><span class="line">    <span class="keyword">if</span> (c &gt;= <span class="number">0x010000</span> &amp;&amp; c &lt;= <span class="number">0x10ffff</span>) &#123;</span><br><span class="line">      bytes.<span class="title function_">push</span>(((c &gt;&gt; <span class="number">18</span>) &amp; <span class="number">0x07</span>) | <span class="number">0xf0</span>);</span><br><span class="line">      bytes.<span class="title function_">push</span>(((c &gt;&gt; <span class="number">12</span>) &amp; <span class="number">0x3f</span>) | <span class="number">0x80</span>);</span><br><span class="line">      bytes.<span class="title function_">push</span>(((c &gt;&gt; <span class="number">6</span>) &amp; <span class="number">0x3f</span>) | <span class="number">0x80</span>);</span><br><span class="line">      bytes.<span class="title function_">push</span>((c &amp; <span class="number">0x3f</span>) | <span class="number">0x80</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c &gt;= <span class="number">0x000800</span> &amp;&amp; c &lt;= <span class="number">0x00ffff</span>) &#123;</span><br><span class="line">      bytes.<span class="title function_">push</span>(((c &gt;&gt; <span class="number">12</span>) &amp; <span class="number">0x0f</span>) | <span class="number">0xe0</span>);</span><br><span class="line">      bytes.<span class="title function_">push</span>(((c &gt;&gt; <span class="number">6</span>) &amp; <span class="number">0x3f</span>) | <span class="number">0x80</span>);</span><br><span class="line">      bytes.<span class="title function_">push</span>((c &amp; <span class="number">0x3f</span>) | <span class="number">0x80</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c &gt;= <span class="number">0x000080</span> &amp;&amp; c &lt;= <span class="number">0x0007ff</span>) &#123;</span><br><span class="line">      bytes.<span class="title function_">push</span>(((c &gt;&gt; <span class="number">6</span>) &amp; <span class="number">0x1f</span>) | <span class="number">0xc0</span>);</span><br><span class="line">      bytes.<span class="title function_">push</span>((c &amp; <span class="number">0x3f</span>) | <span class="number">0x80</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      bytes.<span class="title function_">push</span>(c &amp; <span class="number">0xff</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> bytes;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">SM4</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">SM4_ENCRYPT</span> = <span class="number">1</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">SM4_DECRYPT</span> = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> <span class="title class_">SboxTable</span> = [</span><br><span class="line">    <span class="number">0xd6</span>, <span class="number">0x90</span>, <span class="number">0xe9</span>, <span class="number">0xfe</span>, <span class="number">0xcc</span>, <span class="number">0xe1</span>, <span class="number">0x3d</span>, <span class="number">0xb7</span>, <span class="number">0x16</span>, <span class="number">0xb6</span>, <span class="number">0x14</span>, <span class="number">0xc2</span>, <span class="number">0x28</span>, <span class="number">0xfb</span>, <span class="number">0x2c</span>, <span class="number">0x05</span>, <span class="number">0x2b</span>, <span class="number">0x67</span>, <span class="number">0x9a</span>, <span class="number">0x76</span>, <span class="number">0x2a</span>, <span class="number">0xbe</span>, <span class="number">0x04</span>, <span class="number">0xc3</span>, <span class="number">0xaa</span>, <span class="number">0x44</span>, <span class="number">0x13</span>, <span class="number">0x26</span>, <span class="number">0x49</span>,</span><br><span class="line">    <span class="number">0x86</span>, <span class="number">0x06</span>, <span class="number">0x99</span>, <span class="number">0x9c</span>, <span class="number">0x42</span>, <span class="number">0x50</span>, <span class="number">0xf4</span>, <span class="number">0x91</span>, <span class="number">0xef</span>, <span class="number">0x98</span>, <span class="number">0x7a</span>, <span class="number">0x33</span>, <span class="number">0x54</span>, <span class="number">0x0b</span>, <span class="number">0x43</span>, <span class="number">0xed</span>, <span class="number">0xcf</span>, <span class="number">0xac</span>, <span class="number">0x62</span>, <span class="number">0xe4</span>, <span class="number">0xb3</span>, <span class="number">0x1c</span>, <span class="number">0xa9</span>, <span class="number">0xc9</span>, <span class="number">0x08</span>, <span class="number">0xe8</span>, <span class="number">0x95</span>, <span class="number">0x80</span>, <span class="number">0xdf</span>,</span><br><span class="line">    <span class="number">0x94</span>, <span class="number">0xfa</span>, <span class="number">0x75</span>, <span class="number">0x8f</span>, <span class="number">0x3f</span>, <span class="number">0xa6</span>, <span class="number">0x47</span>, <span class="number">0x07</span>, <span class="number">0xa7</span>, <span class="number">0xfc</span>, <span class="number">0xf3</span>, <span class="number">0x73</span>, <span class="number">0x17</span>, <span class="number">0xba</span>, <span class="number">0x83</span>, <span class="number">0x59</span>, <span class="number">0x3c</span>, <span class="number">0x19</span>, <span class="number">0xe6</span>, <span class="number">0x85</span>, <span class="number">0x4f</span>, <span class="number">0xa8</span>, <span class="number">0x68</span>, <span class="number">0x6b</span>, <span class="number">0x81</span>, <span class="number">0xb2</span>, <span class="number">0x71</span>, <span class="number">0x64</span>, <span class="number">0xda</span>,</span><br><span class="line">    <span class="number">0x8b</span>, <span class="number">0xf8</span>, <span class="number">0xeb</span>, <span class="number">0x0f</span>, <span class="number">0x4b</span>, <span class="number">0x70</span>, <span class="number">0x56</span>, <span class="number">0x9d</span>, <span class="number">0x35</span>, <span class="number">0x1e</span>, <span class="number">0x24</span>, <span class="number">0x0e</span>, <span class="number">0x5e</span>, <span class="number">0x63</span>, <span class="number">0x58</span>, <span class="number">0xd1</span>, <span class="number">0xa2</span>, <span class="number">0x25</span>, <span class="number">0x22</span>, <span class="number">0x7c</span>, <span class="number">0x3b</span>, <span class="number">0x01</span>, <span class="number">0x21</span>, <span class="number">0x78</span>, <span class="number">0x87</span>, <span class="number">0xd4</span>, <span class="number">0x00</span>, <span class="number">0x46</span>, <span class="number">0x57</span>,</span><br><span class="line">    <span class="number">0x9f</span>, <span class="number">0xd3</span>, <span class="number">0x27</span>, <span class="number">0x52</span>, <span class="number">0x4c</span>, <span class="number">0x36</span>, <span class="number">0x02</span>, <span class="number">0xe7</span>, <span class="number">0xa0</span>, <span class="number">0xc4</span>, <span class="number">0xc8</span>, <span class="number">0x9e</span>, <span class="number">0xea</span>, <span class="number">0xbf</span>, <span class="number">0x8a</span>, <span class="number">0xd2</span>, <span class="number">0x40</span>, <span class="number">0xc7</span>, <span class="number">0x38</span>, <span class="number">0xb5</span>, <span class="number">0xa3</span>, <span class="number">0xf7</span>, <span class="number">0xf2</span>, <span class="number">0xce</span>, <span class="number">0xf9</span>, <span class="number">0x61</span>, <span class="number">0x15</span>, <span class="number">0xa1</span>, <span class="number">0xe0</span>,</span><br><span class="line">    <span class="number">0xae</span>, <span class="number">0x5d</span>, <span class="number">0xa4</span>, <span class="number">0x9b</span>, <span class="number">0x34</span>, <span class="number">0x1a</span>, <span class="number">0x55</span>, <span class="number">0xad</span>, <span class="number">0x93</span>, <span class="number">0x32</span>, <span class="number">0x30</span>, <span class="number">0xf5</span>, <span class="number">0x8c</span>, <span class="number">0xb1</span>, <span class="number">0xe3</span>, <span class="number">0x1d</span>, <span class="number">0xf6</span>, <span class="number">0xe2</span>, <span class="number">0x2e</span>, <span class="number">0x82</span>, <span class="number">0x66</span>, <span class="number">0xca</span>, <span class="number">0x60</span>, <span class="number">0xc0</span>, <span class="number">0x29</span>, <span class="number">0x23</span>, <span class="number">0xab</span>, <span class="number">0x0d</span>, <span class="number">0x53</span>,</span><br><span class="line">    <span class="number">0x4e</span>, <span class="number">0x6f</span>, <span class="number">0xd5</span>, <span class="number">0xdb</span>, <span class="number">0x37</span>, <span class="number">0x45</span>, <span class="number">0xde</span>, <span class="number">0xfd</span>, <span class="number">0x8e</span>, <span class="number">0x2f</span>, <span class="number">0x03</span>, <span class="number">0xff</span>, <span class="number">0x6a</span>, <span class="number">0x72</span>, <span class="number">0x6d</span>, <span class="number">0x6c</span>, <span class="number">0x5b</span>, <span class="number">0x51</span>, <span class="number">0x8d</span>, <span class="number">0x1b</span>, <span class="number">0xaf</span>, <span class="number">0x92</span>, <span class="number">0xbb</span>, <span class="number">0xdd</span>, <span class="number">0xbc</span>, <span class="number">0x7f</span>, <span class="number">0x11</span>, <span class="number">0xd9</span>, <span class="number">0x5c</span>,</span><br><span class="line">    <span class="number">0x41</span>, <span class="number">0x1f</span>, <span class="number">0x10</span>, <span class="number">0x5a</span>, <span class="number">0xd8</span>, <span class="number">0x0a</span>, <span class="number">0xc1</span>, <span class="number">0x31</span>, <span class="number">0x88</span>, <span class="number">0xa5</span>, <span class="number">0xcd</span>, <span class="number">0x7b</span>, <span class="number">0xbd</span>, <span class="number">0x2d</span>, <span class="number">0x74</span>, <span class="number">0xd0</span>, <span class="number">0x12</span>, <span class="number">0xb8</span>, <span class="number">0xe5</span>, <span class="number">0xb4</span>, <span class="number">0xb0</span>, <span class="number">0x89</span>, <span class="number">0x69</span>, <span class="number">0x97</span>, <span class="number">0x4a</span>, <span class="number">0x0c</span>, <span class="number">0x96</span>, <span class="number">0x77</span>, <span class="number">0x7e</span>,</span><br><span class="line">    <span class="number">0x65</span>, <span class="number">0xb9</span>, <span class="number">0xf1</span>, <span class="number">0x09</span>, <span class="number">0xc5</span>, <span class="number">0x6e</span>, <span class="number">0xc6</span>, <span class="number">0x84</span>, <span class="number">0x18</span>, <span class="number">0xf0</span>, <span class="number">0x7d</span>, <span class="number">0xec</span>, <span class="number">0x3a</span>, <span class="number">0xdc</span>, <span class="number">0x4d</span>, <span class="number">0x20</span>, <span class="number">0x79</span>, <span class="number">0xee</span>, <span class="number">0x5f</span>, <span class="number">0x3e</span>, <span class="number">0xd7</span>, <span class="number">0xcb</span>, <span class="number">0x39</span>, <span class="number">0x48</span>,</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">FK</span> = [<span class="number">0xa3b1bac6</span>, <span class="number">0x56aa3350</span>, <span class="number">0x677d9197</span>, <span class="number">0xb27022dc</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">CK</span> = [</span><br><span class="line">    <span class="number">0x00070e15</span>, <span class="number">0x1c232a31</span>, <span class="number">0x383f464d</span>, <span class="number">0x545b6269</span>, <span class="number">0x70777e85</span>, <span class="number">0x8c939aa1</span>, <span class="number">0xa8afb6bd</span>, <span class="number">0xc4cbd2d9</span>, <span class="number">0xe0e7eef5</span>, <span class="number">0xfc030a11</span>, <span class="number">0x181f262d</span>, <span class="number">0x343b4249</span>, <span class="number">0x50575e65</span>, <span class="number">0x6c737a81</span>,</span><br><span class="line">    <span class="number">0x888f969d</span>, <span class="number">0xa4abb2b9</span>, <span class="number">0xc0c7ced5</span>, <span class="number">0xdce3eaf1</span>, <span class="number">0xf8ff060d</span>, <span class="number">0x141b2229</span>, <span class="number">0x30373e45</span>, <span class="number">0x4c535a61</span>, <span class="number">0x686f767d</span>, <span class="number">0x848b9299</span>, <span class="number">0xa0a7aeb5</span>, <span class="number">0xbcc3cad1</span>, <span class="number">0xd8dfe6ed</span>, <span class="number">0xf4fb0209</span>,</span><br><span class="line">    <span class="number">0x10171e25</span>, <span class="number">0x2c333a41</span>, <span class="number">0x484f565d</span>, <span class="number">0x646b7279</span>,</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">GET_ULONG_BE</span> = <span class="keyword">function</span> (<span class="params">b, i</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ((b[i] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">24</span>) | ((b[i + <span class="number">1</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">16</span>) | ((b[i + <span class="number">2</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">8</span>) | (b[i + <span class="number">3</span>] &amp; <span class="number">0xff</span> &amp; <span class="number">0xffffffff</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">PUT_ULONG_BE</span> = <span class="keyword">function</span> (<span class="params">n, b, i</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> t1 = <span class="number">0xff</span> &amp; (n &gt;&gt; <span class="number">24</span>);</span><br><span class="line">    <span class="keyword">var</span> t2 = <span class="number">0xff</span> &amp; (n &gt;&gt; <span class="number">16</span>);</span><br><span class="line">    <span class="keyword">var</span> t3 = <span class="number">0xff</span> &amp; (n &gt;&gt; <span class="number">8</span>);</span><br><span class="line">    <span class="keyword">var</span> t4 = <span class="number">0xff</span> &amp; n;</span><br><span class="line">    b[i] = t1 &gt; <span class="number">128</span> ? t1 - <span class="number">256</span> : t1;</span><br><span class="line">    b[i + <span class="number">1</span>] = t2 &gt; <span class="number">128</span> ? t2 - <span class="number">256</span> : t2;</span><br><span class="line">    b[i + <span class="number">2</span>] = t3 &gt; <span class="number">128</span> ? t3 - <span class="number">256</span> : t3;</span><br><span class="line">    b[i + <span class="number">3</span>] = t4 &gt; <span class="number">128</span> ? t4 - <span class="number">256</span> : t4;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">SHL</span> = <span class="keyword">function</span> (<span class="params">x, n</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (x &amp; <span class="number">0xffffffff</span>) &lt;&lt; n;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">ROTL</span> = <span class="keyword">function</span> (<span class="params">x, n</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> s = <span class="variable language_">this</span>.<span class="title function_">SHL</span>(x, n);</span><br><span class="line">    <span class="keyword">var</span> ss = x &gt;&gt; (<span class="number">32</span> - n);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">SHL</span>(x, n) | (x &gt;&gt; (<span class="number">32</span> - n));</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sm4Lt</span> = <span class="keyword">function</span> (<span class="params">ka</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> bb = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> c = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">4</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">PUT_ULONG_BE</span>(ka, a, <span class="number">0</span>);</span><br><span class="line">    b[<span class="number">0</span>] = <span class="variable language_">this</span>.<span class="title function_">sm4Sbox</span>(a[<span class="number">0</span>]);</span><br><span class="line">    b[<span class="number">1</span>] = <span class="variable language_">this</span>.<span class="title function_">sm4Sbox</span>(a[<span class="number">1</span>]);</span><br><span class="line">    b[<span class="number">2</span>] = <span class="variable language_">this</span>.<span class="title function_">sm4Sbox</span>(a[<span class="number">2</span>]);</span><br><span class="line">    b[<span class="number">3</span>] = <span class="variable language_">this</span>.<span class="title function_">sm4Sbox</span>(a[<span class="number">3</span>]);</span><br><span class="line">    bb = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(b, <span class="number">0</span>);</span><br><span class="line">    c = bb ^ <span class="variable language_">this</span>.<span class="title function_">ROTL</span>(bb, <span class="number">2</span>) ^ <span class="variable language_">this</span>.<span class="title function_">ROTL</span>(bb, <span class="number">10</span>) ^ <span class="variable language_">this</span>.<span class="title function_">ROTL</span>(bb, <span class="number">18</span>) ^ <span class="variable language_">this</span>.<span class="title function_">ROTL</span>(bb, <span class="number">24</span>);</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sm4F</span> = <span class="keyword">function</span> (<span class="params">x0, x1, x2, x3, rk</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> x0 ^ <span class="variable language_">this</span>.<span class="title function_">sm4Lt</span>(x1 ^ x2 ^ x3 ^ rk);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sm4CalciRK</span> = <span class="keyword">function</span> (<span class="params">ka</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> bb = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> rk = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">4</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">PUT_ULONG_BE</span>(ka, a, <span class="number">0</span>);</span><br><span class="line">    b[<span class="number">0</span>] = <span class="variable language_">this</span>.<span class="title function_">sm4Sbox</span>(a[<span class="number">0</span>]);</span><br><span class="line">    b[<span class="number">1</span>] = <span class="variable language_">this</span>.<span class="title function_">sm4Sbox</span>(a[<span class="number">1</span>]);</span><br><span class="line">    b[<span class="number">2</span>] = <span class="variable language_">this</span>.<span class="title function_">sm4Sbox</span>(a[<span class="number">2</span>]);</span><br><span class="line">    b[<span class="number">3</span>] = <span class="variable language_">this</span>.<span class="title function_">sm4Sbox</span>(a[<span class="number">3</span>]);</span><br><span class="line">    bb = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(b, <span class="number">0</span>);</span><br><span class="line">    rk = bb ^ <span class="variable language_">this</span>.<span class="title function_">ROTL</span>(bb, <span class="number">13</span>) ^ <span class="variable language_">this</span>.<span class="title function_">ROTL</span>(bb, <span class="number">23</span>);</span><br><span class="line">    <span class="keyword">return</span> rk;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sm4Sbox</span> = <span class="keyword">function</span> (<span class="params">inch</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> i = inch &amp; <span class="number">0xff</span>;</span><br><span class="line">    <span class="keyword">var</span> retVal = <span class="title class_">SboxTable</span>[i];</span><br><span class="line">    <span class="keyword">return</span> retVal &gt; <span class="number">128</span> ? retVal - <span class="number">256</span> : retVal;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sm4_setkey_enc</span> = <span class="keyword">function</span> (<span class="params">ctx, key</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ctx == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="title function_">alert</span>(<span class="string">&#x27;ctx is null!&#x27;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (key == <span class="literal">null</span> || key.<span class="property">length</span> != <span class="number">16</span>) &#123;</span><br><span class="line">      <span class="title function_">alert</span>(<span class="string">&#x27;key error!&#x27;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ctx.<span class="property">mode</span> = <span class="variable language_">this</span>.<span class="property">SM4_ENCRYPT</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">sm4_setkey</span>(ctx.<span class="property">sk</span>, key);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sm4_setkey</span> = <span class="keyword">function</span> (<span class="params">SK, key</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">MK</span> = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">var</span> k = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">36</span>);</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="variable constant_">MK</span>[<span class="number">0</span>] = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(key, <span class="number">0</span>);</span><br><span class="line">    <span class="variable constant_">MK</span>[<span class="number">1</span>] = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(key, <span class="number">4</span>);</span><br><span class="line">    <span class="variable constant_">MK</span>[<span class="number">2</span>] = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(key, <span class="number">8</span>);</span><br><span class="line">    <span class="variable constant_">MK</span>[<span class="number">3</span>] = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(key, <span class="number">12</span>);</span><br><span class="line">    k[<span class="number">0</span>] = <span class="variable constant_">MK</span>[<span class="number">0</span>] ^ <span class="variable constant_">FK</span>[<span class="number">0</span>];</span><br><span class="line">    k[<span class="number">1</span>] = <span class="variable constant_">MK</span>[<span class="number">1</span>] ^ <span class="variable constant_">FK</span>[<span class="number">1</span>];</span><br><span class="line">    k[<span class="number">2</span>] = <span class="variable constant_">MK</span>[<span class="number">2</span>] ^ <span class="variable constant_">FK</span>[<span class="number">2</span>];</span><br><span class="line">    k[<span class="number">3</span>] = <span class="variable constant_">MK</span>[<span class="number">3</span>] ^ <span class="variable constant_">FK</span>[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">      k[i + <span class="number">4</span>] = k[i] ^ <span class="variable language_">this</span>.<span class="title function_">sm4CalciRK</span>(k[i + <span class="number">1</span>] ^ k[i + <span class="number">2</span>] ^ k[i + <span class="number">3</span>] ^ <span class="variable constant_">CK</span>[i]);</span><br><span class="line">      <span class="variable constant_">SK</span>[i] = k[i + <span class="number">4</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">padding</span> = <span class="keyword">function</span> (<span class="params">input, mode</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (input == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> ret = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (mode == <span class="variable language_">this</span>.<span class="property">SM4_ENCRYPT</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> p = <span class="built_in">parseInt</span>(<span class="number">16</span> - (input.<span class="property">length</span> % <span class="number">16</span>));</span><br><span class="line">      ret = input.<span class="title function_">slice</span>(<span class="number">0</span>);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; p; i++) &#123;</span><br><span class="line">        ret[input.<span class="property">length</span> + i] = p;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> p = input[input.<span class="property">length</span> - <span class="number">1</span>];</span><br><span class="line">      ret = input.<span class="title function_">slice</span>(<span class="number">0</span>, input.<span class="property">length</span> - p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sm4_one_round</span> = <span class="keyword">function</span> (<span class="params">sk, input, output</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> ulbuf = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">36</span>);</span><br><span class="line">    ulbuf[<span class="number">0</span>] = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(input, <span class="number">0</span>);</span><br><span class="line">    ulbuf[<span class="number">1</span>] = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(input, <span class="number">4</span>);</span><br><span class="line">    ulbuf[<span class="number">2</span>] = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(input, <span class="number">8</span>);</span><br><span class="line">    ulbuf[<span class="number">3</span>] = <span class="variable language_">this</span>.<span class="title function_">GET_ULONG_BE</span>(input, <span class="number">12</span>);</span><br><span class="line">    <span class="keyword">while</span> (i &lt; <span class="number">32</span>) &#123;</span><br><span class="line">      ulbuf[i + <span class="number">4</span>] = <span class="variable language_">this</span>.<span class="title function_">sm4F</span>(ulbuf[i], ulbuf[i + <span class="number">1</span>], ulbuf[i + <span class="number">2</span>], ulbuf[i + <span class="number">3</span>], sk[i]);</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">PUT_ULONG_BE</span>(ulbuf[<span class="number">35</span>], output, <span class="number">0</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">PUT_ULONG_BE</span>(ulbuf[<span class="number">34</span>], output, <span class="number">4</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">PUT_ULONG_BE</span>(ulbuf[<span class="number">33</span>], output, <span class="number">8</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">PUT_ULONG_BE</span>(ulbuf[<span class="number">32</span>], output, <span class="number">12</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sm4_crypt_ecb</span> = <span class="keyword">function</span> (<span class="params">ctx, input</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (input == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="title function_">alert</span>(<span class="string">&#x27;input is null!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (ctx.<span class="property">isPadding</span> &amp;&amp; ctx.<span class="property">mode</span> == <span class="variable language_">this</span>.<span class="property">SM4_ENCRYPT</span>) &#123;</span><br><span class="line">      input = <span class="variable language_">this</span>.<span class="title function_">padding</span>(input, <span class="variable language_">this</span>.<span class="property">SM4_ENCRYPT</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> length = input.<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">var</span> bous = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line">    <span class="keyword">for</span> (; length &gt; <span class="number">0</span>; length -= <span class="number">16</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> out = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">16</span>);</span><br><span class="line">      <span class="keyword">var</span> ins = input.<span class="title function_">slice</span>(i * <span class="number">16</span>, <span class="number">16</span> * (i + <span class="number">1</span>));</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">sm4_one_round</span>(ctx.<span class="property">sk</span>, ins, out);</span><br><span class="line">      bous = bous.<span class="title function_">concat</span>(out);</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> output = bous;</span><br><span class="line">    <span class="keyword">if</span> (ctx.<span class="property">isPadding</span> &amp;&amp; ctx.<span class="property">mode</span> == <span class="variable language_">this</span>.<span class="property">SM4_DECRYPT</span>) &#123;</span><br><span class="line">      output = <span class="variable language_">this</span>.<span class="title function_">padding</span>(output, <span class="variable language_">this</span>.<span class="property">SM4_DECRYPT</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; output.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (output[i] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        output[i] = output[i] + <span class="number">256</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sm4_crypt_cbc</span> = <span class="keyword">function</span> (<span class="params">ctx, iv, input</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (iv == <span class="literal">null</span> || iv.<span class="property">length</span> != <span class="number">16</span>) &#123;</span><br><span class="line">      <span class="title function_">alert</span>(<span class="string">&#x27;iv error!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (input == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="title function_">alert</span>(<span class="string">&#x27;input is null!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (ctx.<span class="property">isPadding</span> &amp;&amp; ctx.<span class="property">mode</span> == <span class="variable language_">this</span>.<span class="property">SM4_ENCRYPT</span>) &#123;</span><br><span class="line">      input = <span class="variable language_">this</span>.<span class="title function_">padding</span>(input, <span class="variable language_">this</span>.<span class="property">SM4_ENCRYPT</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> length = input.<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">var</span> bous = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line">    <span class="keyword">if</span> (ctx.<span class="property">mode</span> == <span class="variable language_">this</span>.<span class="property">SM4_ENCRYPT</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> k = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (; length &gt; <span class="number">0</span>; length -= <span class="number">16</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> out = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">16</span>);</span><br><span class="line">        <span class="keyword">var</span> out1 = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">16</span>);</span><br><span class="line">        <span class="keyword">var</span> ins = input.<span class="title function_">slice</span>(k * <span class="number">16</span>, <span class="number">16</span> * (k + <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">16</span>; i++) &#123;</span><br><span class="line">          out[i] = ins[i] ^ iv[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">sm4_one_round</span>(ctx.<span class="property">sk</span>, out, out1);</span><br><span class="line">        iv = out1.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">16</span>);</span><br><span class="line">        bous = bous.<span class="title function_">concat</span>(out1);</span><br><span class="line">        k++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> temp = [];</span><br><span class="line">      <span class="keyword">var</span> k = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (; length &gt; <span class="number">0</span>; length -= <span class="number">16</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> out = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">16</span>);</span><br><span class="line">        <span class="keyword">var</span> out1 = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">16</span>);</span><br><span class="line">        <span class="keyword">var</span> ins = input.<span class="title function_">slice</span>(k * <span class="number">16</span>, <span class="number">16</span> * (k + <span class="number">1</span>));</span><br><span class="line">        temp = ins.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">16</span>);</span><br><span class="line">        <span class="title function_">sm4_one_round</span>(ctx.<span class="property">sk</span>, ins, out);</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">16</span>; i++) &#123;</span><br><span class="line">          out1[i] = out[i] ^ iv[i];</span><br><span class="line">        &#125;</span><br><span class="line">        iv = temp.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">16</span>);</span><br><span class="line">        bous = bous.<span class="title function_">concat</span>(out1);</span><br><span class="line">        k++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> output = bous;</span><br><span class="line">    <span class="keyword">if</span> (ctx.<span class="property">isPadding</span> &amp;&amp; ctx.<span class="property">mode</span> == <span class="variable language_">this</span>.<span class="property">SM4_DECRYPT</span>) &#123;</span><br><span class="line">      output = <span class="variable language_">this</span>.<span class="title function_">padding</span>(output, <span class="variable language_">this</span>.<span class="property">SM4_DECRYPT</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; output.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (output[i] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        output[i] = output[i] + <span class="number">256</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> secretKey = <span class="string">&#x27;w7bqTgHGZH5PD0cy&#x27;</span>;</span><br><span class="line"><span class="comment">// const iv = &#x27;&#x27;;</span></span><br><span class="line"><span class="comment">// const hexString = false;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">encryptData_ECB</span>(<span class="params">plainText</span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> sm4 = <span class="keyword">new</span> <span class="title class_">SM4</span>();</span><br><span class="line">    <span class="keyword">var</span> ctx = <span class="keyword">new</span> <span class="title class_">SM4</span>_Context();</span><br><span class="line">    ctx.<span class="property">isPadding</span> = <span class="literal">true</span>;</span><br><span class="line">    ctx.<span class="property">mode</span> = sm4.<span class="property">SM4_ENCRYPT</span>;</span><br><span class="line">    <span class="keyword">var</span> keyBytes = <span class="title function_">stringToByte</span>(secretKey);</span><br><span class="line">    sm4.<span class="title function_">sm4_setkey_enc</span>(ctx, keyBytes);</span><br><span class="line">    <span class="keyword">var</span> encrypted = sm4.<span class="title function_">sm4_crypt_ecb</span>(ctx, <span class="title function_">stringToByte</span>(plainText));</span><br><span class="line">    <span class="keyword">var</span> cipherText = base64js.<span class="title function_">fromByteArray</span>(encrypted);</span><br><span class="line">    <span class="keyword">if</span> (cipherText != <span class="literal">null</span> &amp;&amp; cipherText.<span class="title function_">trim</span>().<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      cipherText.<span class="title function_">replace</span>(<span class="regexp">/(\s*|\t|\r|\n)/g</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cipherText;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(e);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * base64js</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * base64js</span></span><br><span class="line"><span class="comment"> * base64js.toByteArray(d.input)</span></span><br><span class="line"><span class="comment"> * base64js.fromByteArray(c);</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//  (function(r) &#123;</span></span><br><span class="line"><span class="comment">//   if (typeof exports === &quot;object&quot; &amp;&amp; typeof module !== &quot;undefined&quot;) &#123;</span></span><br><span class="line"><span class="comment">//     module.exports = r();</span></span><br><span class="line"><span class="comment">//   &#125; else &#123;</span></span><br><span class="line"><span class="comment">//     if (typeof define === &quot;function&quot; &amp;&amp; define.amd) &#123;</span></span><br><span class="line"><span class="comment">//       define([], r);</span></span><br><span class="line"><span class="comment">//     &#125; else &#123;</span></span><br><span class="line"><span class="comment">//       var e;</span></span><br><span class="line"><span class="comment">//       if (typeof window !== &quot;undefined&quot;) &#123;</span></span><br><span class="line"><span class="comment">//         e = window;</span></span><br><span class="line"><span class="comment">//       &#125; else &#123;</span></span><br><span class="line"><span class="comment">//         if (typeof global !== &quot;undefined&quot;) &#123;</span></span><br><span class="line"><span class="comment">//           e = global;</span></span><br><span class="line"><span class="comment">//         &#125; else &#123;</span></span><br><span class="line"><span class="comment">//           if (typeof self !== &quot;undefined&quot;) &#123;</span></span><br><span class="line"><span class="comment">//             e = self;</span></span><br><span class="line"><span class="comment">//           &#125; else &#123;</span></span><br><span class="line"><span class="comment">//             e = this;</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//       &#125;</span></span><br><span class="line"><span class="comment">//       e.base64js = r();</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;)(function() &#123;</span></span><br><span class="line"><span class="comment">//   var r, e, t;</span></span><br><span class="line"><span class="comment">//   return (function r(e, t, n) &#123;</span></span><br><span class="line"><span class="comment">//     function o(i, a) &#123;</span></span><br><span class="line"><span class="comment">//       if (!t[i]) &#123;</span></span><br><span class="line"><span class="comment">//         if (!e[i]) &#123;</span></span><br><span class="line"><span class="comment">//           var u = typeof require == &quot;function&quot; &amp;&amp; require;</span></span><br><span class="line"><span class="comment">//           if (!a &amp;&amp; u) &#123;</span></span><br><span class="line"><span class="comment">//             return u(i, !0);</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//           if (f) &#123;</span></span><br><span class="line"><span class="comment">//             return f(i, !0);</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//           var d = new Error(&quot;Cannot find module &#x27;&quot; + i + &quot;&#x27;&quot;);</span></span><br><span class="line"><span class="comment">//           throw ((d.code = &quot;MODULE_NOT_FOUND&quot;), d);</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//         var c = (t[i] = &#123; exports: &#123;&#125; &#125;);</span></span><br><span class="line"><span class="comment">//         e[i][0].call(</span></span><br><span class="line"><span class="comment">//           c.exports,</span></span><br><span class="line"><span class="comment">//           function(r) &#123;</span></span><br><span class="line"><span class="comment">//             var t = e[i][1][r];</span></span><br><span class="line"><span class="comment">//             return o(t ? t : r);</span></span><br><span class="line"><span class="comment">//           &#125;,</span></span><br><span class="line"><span class="comment">//           c,</span></span><br><span class="line"><span class="comment">//           c.exports,</span></span><br><span class="line"><span class="comment">//           r,</span></span><br><span class="line"><span class="comment">//           e,</span></span><br><span class="line"><span class="comment">//           t,</span></span><br><span class="line"><span class="comment">//           n</span></span><br><span class="line"><span class="comment">//         );</span></span><br><span class="line"><span class="comment">//       &#125;</span></span><br><span class="line"><span class="comment">//       return t[i].exports;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     var f = typeof require == &quot;function&quot; &amp;&amp; require;</span></span><br><span class="line"><span class="comment">//     for (var i = 0; i &lt; n.length; i++) &#123;</span></span><br><span class="line"><span class="comment">//       o(n[i]);</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     return o;</span></span><br><span class="line"><span class="comment">//   &#125;)(</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//       &quot;/&quot;: [</span></span><br><span class="line"><span class="comment">//         function(r, e, t) &#123;</span></span><br><span class="line"><span class="comment">//           t.byteLength = c;</span></span><br><span class="line"><span class="comment">//           t.toByteArray = v;</span></span><br><span class="line"><span class="comment">//           t.fromByteArray = s;</span></span><br><span class="line"><span class="comment">//           var n = [];</span></span><br><span class="line"><span class="comment">//           var o = [];</span></span><br><span class="line"><span class="comment">//           var f = typeof Uint8Array !== &quot;undefined&quot; ? Uint8Array : Array;</span></span><br><span class="line"><span class="comment">//           var i =</span></span><br><span class="line"><span class="comment">//             &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;</span></span><br><span class="line"><span class="comment">//           for (var a = 0, u = i.length; a &lt; u; ++a) &#123;</span></span><br><span class="line"><span class="comment">//             n[a] = i[a];</span></span><br><span class="line"><span class="comment">//             o[i.charCodeAt(a)] = a;</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//           o[&quot;-&quot;.charCodeAt(0)] = 62;</span></span><br><span class="line"><span class="comment">//           o[&quot;_&quot;.charCodeAt(0)] = 63;</span></span><br><span class="line"><span class="comment">//           function d(r) &#123;</span></span><br><span class="line"><span class="comment">//             var e = r.length;</span></span><br><span class="line"><span class="comment">//             if (e % 4 &gt; 0) &#123;</span></span><br><span class="line"><span class="comment">//               throw new Error(&quot;Invalid string. Length must be a multiple of 4&quot;);</span></span><br><span class="line"><span class="comment">//             &#125;</span></span><br><span class="line"><span class="comment">//             return r[e - 2] === &quot;=&quot; ? 2 : r[e - 1] === &quot;=&quot; ? 1 : 0;</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//           function c(r) &#123;</span></span><br><span class="line"><span class="comment">//             return (r.length * 3) / 4 - d(r);</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//           function v(r) &#123;</span></span><br><span class="line"><span class="comment">//             var e, t, n, i, a;</span></span><br><span class="line"><span class="comment">//             var u = r.length;</span></span><br><span class="line"><span class="comment">//             i = d(r);</span></span><br><span class="line"><span class="comment">//             a = new f((u * 3) / 4 - i);</span></span><br><span class="line"><span class="comment">//             t = i &gt; 0 ? u - 4 : u;</span></span><br><span class="line"><span class="comment">//             var c = 0;</span></span><br><span class="line"><span class="comment">//             for (e = 0; e &lt; t; e += 4) &#123;</span></span><br><span class="line"><span class="comment">//               n =</span></span><br><span class="line"><span class="comment">//                 (o[r.charCodeAt(e)] &lt;&lt; 18) |</span></span><br><span class="line"><span class="comment">//                 (o[r.charCodeAt(e + 1)] &lt;&lt; 12) |</span></span><br><span class="line"><span class="comment">//                 (o[r.charCodeAt(e + 2)] &lt;&lt; 6) |</span></span><br><span class="line"><span class="comment">//                 o[r.charCodeAt(e + 3)];</span></span><br><span class="line"><span class="comment">//               a[c++] = (n &gt;&gt; 16) &amp; 255;</span></span><br><span class="line"><span class="comment">//               a[c++] = (n &gt;&gt; 8) &amp; 255;</span></span><br><span class="line"><span class="comment">//               a[c++] = n &amp; 255;</span></span><br><span class="line"><span class="comment">//             &#125;</span></span><br><span class="line"><span class="comment">//             if (i === 2) &#123;</span></span><br><span class="line"><span class="comment">//               n = (o[r.charCodeAt(e)] &lt;&lt; 2) | (o[r.charCodeAt(e + 1)] &gt;&gt; 4);</span></span><br><span class="line"><span class="comment">//               a[c++] = n &amp; 255;</span></span><br><span class="line"><span class="comment">//             &#125; else &#123;</span></span><br><span class="line"><span class="comment">//               if (i === 1) &#123;</span></span><br><span class="line"><span class="comment">//                 n =</span></span><br><span class="line"><span class="comment">//                   (o[r.charCodeAt(e)] &lt;&lt; 10) |</span></span><br><span class="line"><span class="comment">//                   (o[r.charCodeAt(e + 1)] &lt;&lt; 4) |</span></span><br><span class="line"><span class="comment">//                   (o[r.charCodeAt(e + 2)] &gt;&gt; 2);</span></span><br><span class="line"><span class="comment">//                 a[c++] = (n &gt;&gt; 8) &amp; 255;</span></span><br><span class="line"><span class="comment">//                 a[c++] = n &amp; 255;</span></span><br><span class="line"><span class="comment">//               &#125;</span></span><br><span class="line"><span class="comment">//             &#125;</span></span><br><span class="line"><span class="comment">//             return a;</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//           function l(r) &#123;</span></span><br><span class="line"><span class="comment">//             return (</span></span><br><span class="line"><span class="comment">//               n[(r &gt;&gt; 18) &amp; 63] +</span></span><br><span class="line"><span class="comment">//               n[(r &gt;&gt; 12) &amp; 63] +</span></span><br><span class="line"><span class="comment">//               n[(r &gt;&gt; 6) &amp; 63] +</span></span><br><span class="line"><span class="comment">//               n[r &amp; 63]</span></span><br><span class="line"><span class="comment">//             );</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//           function h(r, e, t) &#123;</span></span><br><span class="line"><span class="comment">//             var n;</span></span><br><span class="line"><span class="comment">//             var o = [];</span></span><br><span class="line"><span class="comment">//             for (var f = e; f &lt; t; f += 3) &#123;</span></span><br><span class="line"><span class="comment">//               n = (r[f] &lt;&lt; 16) + (r[f + 1] &lt;&lt; 8) + r[f + 2];</span></span><br><span class="line"><span class="comment">//               o.push(l(n));</span></span><br><span class="line"><span class="comment">//             &#125;</span></span><br><span class="line"><span class="comment">//             return o.join(&quot;&quot;);</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//           function s(r) &#123;</span></span><br><span class="line"><span class="comment">//             var e;</span></span><br><span class="line"><span class="comment">//             var t = r.length;</span></span><br><span class="line"><span class="comment">//             var o = t % 3;</span></span><br><span class="line"><span class="comment">//             var f = &quot;&quot;;</span></span><br><span class="line"><span class="comment">//             var i = [];</span></span><br><span class="line"><span class="comment">//             var a = 16383;</span></span><br><span class="line"><span class="comment">//             for (var u = 0, d = t - o; u &lt; d; u += a) &#123;</span></span><br><span class="line"><span class="comment">//               i.push(h(r, u, u + a &gt; d ? d : u + a));</span></span><br><span class="line"><span class="comment">//             &#125;</span></span><br><span class="line"><span class="comment">//             if (o === 1) &#123;</span></span><br><span class="line"><span class="comment">//               e = r[t - 1];</span></span><br><span class="line"><span class="comment">//               f += n[e &gt;&gt; 2];</span></span><br><span class="line"><span class="comment">//               f += n[(e &lt;&lt; 4) &amp; 63];</span></span><br><span class="line"><span class="comment">//               f += &quot;==&quot;;</span></span><br><span class="line"><span class="comment">//             &#125; else &#123;</span></span><br><span class="line"><span class="comment">//               if (o === 2) &#123;</span></span><br><span class="line"><span class="comment">//                 e = (r[t - 2] &lt;&lt; 8) + r[t - 1];</span></span><br><span class="line"><span class="comment">//                 f += n[e &gt;&gt; 10];</span></span><br><span class="line"><span class="comment">//                 f += n[(e &gt;&gt; 4) &amp; 63];</span></span><br><span class="line"><span class="comment">//                 f += n[(e &lt;&lt; 2) &amp; 63];</span></span><br><span class="line"><span class="comment">//                 f += &quot;=&quot;;</span></span><br><span class="line"><span class="comment">//               &#125;</span></span><br><span class="line"><span class="comment">//             &#125;</span></span><br><span class="line"><span class="comment">//             i.push(f);</span></span><br><span class="line"><span class="comment">//             return i.join(&quot;&quot;);</span></span><br><span class="line"><span class="comment">//           &#125;</span></span><br><span class="line"><span class="comment">//         &#125;,</span></span><br><span class="line"><span class="comment">//         &#123;&#125;,</span></span><br><span class="line"><span class="comment">//       ],</span></span><br><span class="line"><span class="comment">//     &#125;,</span></span><br><span class="line"><span class="comment">//     &#123;&#125;,</span></span><br><span class="line"><span class="comment">//     []</span></span><br><span class="line"><span class="comment">//   )(&quot;/&quot;);</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%87%E4%BB%BD/" rel="tag">备份</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/post/48d3.html" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            我的prettier.config
+          
+        </div>
+      </a>
+    
+    
+      <a href="/post/21d0.html" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">安装Docker和Jenkins</div>
+      </a>
+    
+  </nav>
+
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+
+
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+
+
+<script src="https://cdn.staticfile.org/blueimp-md5/2.19.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '0f7dec984fa359926d3a',
+    clientSecret: 'ba07a8f4f94693c69dd00ba7a6551751f1197548',
+    repo: 'myblog-comments',
+    owner: 'JingTao-Li',
+    admin: ['JingTao-Li'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2022
+        <i class="ri-heart-fill heart_icon"></i> 京涛
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/logo-header.png" alt="京涛个人博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=488902553&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: -10px;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"dialog":{"hitokoto":true,"enable":true},"log":false});</script></body>
+
+</html>
