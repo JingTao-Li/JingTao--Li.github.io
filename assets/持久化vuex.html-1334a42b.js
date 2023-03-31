@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-38e35d9e","path":"/front/vue/%E6%8C%81%E4%B9%85%E5%8C%96vuex.html","title":"持久化vuex","lang":"zh-CN","frontmatter":{"title":"持久化vuex","tags":"知识积累","categories":["Vue"],"date":"2022-08-22T15:22:20.000Z"},"headers":[],"git":{"updatedTime":null,"contributors":[]},"filePathRelative":"front/vue/持久化vuex.md"}');export{e as data};

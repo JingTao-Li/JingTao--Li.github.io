@@ -1,0 +1,1 @@
+import{_ as e,p as t,q as n,R as o,Q as c}from"./framework-2d0cd674.js";const s={},r=c("p",null,"工作主要以vue.js为主，从vue2过渡到vue3，对vue有一些自己的理解。 我也在不断地积累中逐渐健壮自己的vue项目。在开发中也有一些自己优化体验的尝试，想要分享出来并做个记录。",-1);function _(a,l){return t(),n("div",null,[r,o(" more ")])}const d=e(s,[["render",_],["__file","index.html.vue"]]);export{d as default};

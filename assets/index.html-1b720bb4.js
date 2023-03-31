@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-0e02d7a3","path":"/front/javascript/","title":"JS常用工具类汇总（持续完善....）","lang":"zh-CN","frontmatter":{"title":"JS常用工具类汇总（持续完善....）","date":"2021-06-29T19:41:45.000Z"},"headers":[],"git":{"updatedTime":null,"contributors":[]},"filePathRelative":"front/javascript/README.md"}');export{t as data};

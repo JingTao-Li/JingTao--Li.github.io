@@ -1,0 +1,1 @@
+import{_ as e,p as t,q as c,R as n,Q as o}from"./framework-2d0cd674.js";const r={},a=o("p",null,"整理项目开发中经常使用的Javascript片段, 以便Ctrl + C",-1);function s(_,l){return t(),c("div",null,[a,n(" more ")])}const i=e(r,[["render",s],["__file","index.html.vue"]]);export{i as default};

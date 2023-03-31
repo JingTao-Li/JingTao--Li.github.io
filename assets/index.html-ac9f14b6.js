@@ -1,0 +1,1 @@
+import{_ as e,p as t,q as n,R as o,Q as c}from"./framework-2d0cd674.js";const r={},s=c("p",null,"总结一些web前端的知识点。",-1);function _(a,l){return t(),n("div",null,[s,o(" more ")])}const m=e(r,[["render",_],["__file","index.html.vue"]]);export{m as default};

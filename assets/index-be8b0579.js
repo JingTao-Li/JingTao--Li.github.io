@@ -1,0 +1,1 @@
+import o from"./category-920f715b.js";import{_ as t,c as n,p as a,U as r,a8 as s}from"./framework-2d0cd674.js";const p=n({props:{layoutName:{type:String,default:""}},components:{category:o},setup(){return{}}});function c(e,i,m,f,u,_){return a(),r(s(e.layoutName))}const y=t(p,[["render",c],["__file","index.vue"]]);export{y as default};
